@@ -1,0 +1,52 @@
+{
+  "meta": {
+    "title": "Jonathan Avila — Software Engineer · Backend, Fullstack & AI",
+    "description": "Portafolio profesional de Jonathan Avila. Software Engineer con foco en backend, fullstack e IA generativa. Creador de Ciudadano Alerta, Sania, HelPet y MaxFind."
+  },
+  "nav": {
+    "about": "Sobre mí",
+    "services": "Servicios",
+    "experience": "Experiencia",
+    "projects": "Proyectos",
+    "contact": "Contacto",
+    "resume": "Descargar CV"
+  },
+  "hero": {
+    "greeting": "Hola, soy",
+    "name": "Jonathan Avila",
+    "role": "Software Engineer — Backend, Fullstack & AI",
+    "tagline": "14+ años construyendo software. Backend como foco, con experiencia fullstack e IA generativa en producción: arquitecturas RAG, agentes LLM y servicios serverless en AWS.",
+    "ctaProjects": "Ver proyectos",
+    "ctaContact": "Contáctame"
+  },
+  "about": {
+    "title": "Sobre mí",
+    "body": "Soy ingeniero de software con más de 14 años de trayectoria (desde 2012), con foco en backend y experiencia sólida como fullstack e ingeniero de IA. Diseño arquitecturas escalables y llevo IA generativa del prototipo a producción: sistemas RAG, agentes LLM y pipelines NLP en Python, con obsesión por la fiabilidad, la precisión y el costo a escala. He entregado soluciones en fintech, salud y dominios regulados para clientes como Coca-Cola Andina, Naranja X y AUNA, y he fundado y desarrollado mis propios productos.",
+    "skillsTitle": "Mapa de habilidades",
+    "skillsHint": "Todo parte de los fundamentos de programación en el centro; desde ahí se ramifican mis líneas de carrera. Haz clic en una rama para enfocarla y pasa el cursor sobre cada tecnología para ver su detalle."
+  },
+  "services": {
+    "title": "Servicios",
+    "subtitle": "Cómo puedo ayudarte"
+  },
+  "experience": {
+    "title": "Experiencia",
+    "present": "Actualidad"
+  },
+  "projects": {
+    "title": "Proyectos propios",
+    "subtitle": "Productos que he creado",
+    "visit": "Visitar",
+    "code": "Código",
+    "roleLabel": "Rol"
+  },
+  "contact": {
+    "title": "Contacto",
+    "subtitle": "¿Trabajamos juntos?",
+    "body": "Estoy abierto a nuevas oportunidades y colaboraciones. Escríbeme y te respondo pronto.",
+    "email": "Enviar correo"
+  },
+  "footer": {
+    "rights": "Todos los derechos reservados."
+  }
+}

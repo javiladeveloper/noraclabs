@@ -1,0 +1,287 @@
+import Image from "next/image";
+import { notFound } from "next/navigation";
+import { getDictionary, hasLocale } from "@/dictionaries";
+import { projects } from "@/data/projects";
+import { profile, experience } from "@/data/profile";
+import { metrics, services } from "@/data/highlights";
+import { Navbar } from "@/components/Navbar";
+import { ProjectCard } from "@/components/ProjectCard";
+import { SkillGraph } from "@/components/SkillGraph";
+import { Reveal } from "@/components/Reveal";
+import { ServiceIcon } from "@/components/ServiceIcon";
+
+export default async function Home({ params }: PageProps<"/[lang]">) {
+  const { lang } = await params;
+  if (!hasLocale(lang)) notFound();
+  const dict = await getDictionary(lang);
+
+  const resume = profile.resume[lang];
+
+  return (
+    <>
+      <Navbar lang={lang} dict={dict} />
+
+      <main className="mx-auto max-w-5xl px-6">
+        {/* Hero */}
+        <section className="relative flex min-h-[86vh] items-center py-20">
+          {/* Subtle neural-network backdrop */}
+          <div
+            className="pointer-events-none absolute inset-0 -z-10 overflow-hidden"
+            aria-hidden
+          >
+            <Image
+              src="/hero.png"
+              alt=""
+              fill
+              priority
+              sizes="100vw"
+              className="object-cover opacity-40 [mask-image:radial-gradient(ellipse_at_center,black,transparent_78%)]"
+            />
+          </div>
+
+          <div className="grid w-full items-center gap-12 md:grid-cols-[1.4fr_1fr]">
+            <div>
+              <p className="text-sm font-medium text-accent">
+                {dict.hero.greeting}
+              </p>
+              <h1 className="mt-2 text-5xl font-bold tracking-tight sm:text-6xl">
+                {dict.hero.name}
+              </h1>
+              <p className="mt-3 text-xl font-medium text-foreground sm:text-2xl">
+                {dict.hero.role}
+              </p>
+              <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted">
+                {dict.hero.tagline}
+              </p>
+              <div className="mt-8 flex flex-wrap gap-4">
+                <a
+                  href={`#projects`}
+                  className="rounded-full bg-accent px-6 py-3 text-sm font-semibold text-white transition-opacity hover:opacity-90"
+                >
+                  {dict.hero.ctaProjects}
+                </a>
+                <a
+                  href={`#contact`}
+                  className="rounded-full border border-border px-6 py-3 text-sm font-semibold transition-colors hover:border-accent"
+                >
+                  {dict.hero.ctaContact}
+                </a>
+                {resume && (
+                  <a
+                    href={resume}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="rounded-full border border-border px-6 py-3 text-sm font-semibold text-muted transition-colors hover:text-foreground"
+                  >
+                    {dict.nav.resume}
+                  </a>
+                )}
+              </div>
+            </div>
+
+            <div className="relative mx-auto w-full max-w-xs md:max-w-none">
+              <div
+                className="absolute -inset-4 rounded-full opacity-40 blur-3xl"
+                style={{ background: "var(--accent)" }}
+                aria-hidden
+              />
+              <div className="relative aspect-square overflow-hidden rounded-2xl border border-border">
+                <Image
+                  src="/portrait.png"
+                  alt={dict.hero.name}
+                  fill
+                  priority
+                  sizes="(max-width: 768px) 20rem, 22rem"
+                  className="object-cover"
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Metrics */}
+        <Reveal>
+          <section className="grid grid-cols-2 gap-6 border-t border-border py-12 sm:grid-cols-4">
+            {metrics.map((m) => (
+              <div key={m.value} className="text-center sm:text-left">
+                <div className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+                  {m.value}
+                </div>
+                <div className="mt-1 text-xs leading-snug text-muted">
+                  {m.label[lang]}
+                </div>
+              </div>
+            ))}
+          </section>
+        </Reveal>
+
+        {/* About */}
+        <section id="about" className="scroll-mt-24 border-t border-border py-20">
+          <Reveal>
+            <h2 className="text-sm font-semibold uppercase tracking-widest text-accent">
+              {dict.about.title}
+            </h2>
+            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted">
+              {dict.about.body}
+            </p>
+          </Reveal>
+          <Reveal delay={80}>
+            <h3 className="mt-10 text-sm font-semibold text-foreground">
+              {dict.about.skillsTitle}
+            </h3>
+            <p className="mt-2 max-w-2xl text-sm text-muted">
+              {dict.about.skillsHint}
+            </p>
+            <div className="mt-6">
+              <SkillGraph lang={lang} />
+            </div>
+          </Reveal>
+        </section>
+
+        {/* Services */}
+        <section
+          id="services"
+          className="scroll-mt-24 border-t border-border py-20"
+        >
+          <Reveal>
+            <h2 className="text-sm font-semibold uppercase tracking-widest text-accent">
+              {dict.services.title}
+            </h2>
+            <p className="mt-2 text-2xl font-bold tracking-tight">
+              {dict.services.subtitle}
+            </p>
+          </Reveal>
+          <div className="mt-10 grid gap-6 sm:grid-cols-2">
+            {services.map((s, i) => (
+              <Reveal key={s.icon} delay={i * 70}>
+                <div className="flex h-full gap-4 rounded-2xl border border-border bg-card/50 p-6 transition-colors hover:border-accent/50">
+                  <ServiceIcon name={s.icon} />
+                  <div>
+                    <h3 className="font-semibold">{s.title[lang]}</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-muted">
+                      {s.body[lang]}
+                    </p>
+                  </div>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </section>
+
+        {/* Experience — timeline */}
+        <section
+          id="experience"
+          className="scroll-mt-24 border-t border-border py-20"
+        >
+          <Reveal>
+            <h2 className="text-sm font-semibold uppercase tracking-widest text-accent">
+              {dict.experience.title}
+            </h2>
+          </Reveal>
+          <div className="mt-10 ml-2 border-l border-border">
+            {experience.map((item, i) => (
+              <Reveal key={item.company} delay={i * 60}>
+                <div className="relative pb-10 pl-8 last:pb-0">
+                  {/* timeline dot */}
+                  <span
+                    className="absolute -left-[7px] top-1.5 h-3.5 w-3.5 rounded-full border-2 border-background"
+                    style={{ background: "var(--accent)" }}
+                    aria-hidden
+                  />
+                  <div className="flex flex-wrap items-baseline justify-between gap-2">
+                    <h3 className="text-lg font-semibold">{item.role[lang]}</h3>
+                    <span className="font-mono text-xs text-muted">
+                      {item.start} — {item.end || dict.experience.present}
+                    </span>
+                  </div>
+                  <p className="text-sm font-medium text-accent">
+                    {item.company}
+                  </p>
+                  <p className="mt-2 text-sm leading-relaxed text-muted">
+                    {item.description[lang]}
+                  </p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </section>
+
+        {/* Projects */}
+        <section
+          id="projects"
+          className="scroll-mt-24 border-t border-border py-20"
+        >
+          <Reveal>
+            <h2 className="text-sm font-semibold uppercase tracking-widest text-accent">
+              {dict.projects.title}
+            </h2>
+            <p className="mt-2 text-2xl font-bold tracking-tight">
+              {dict.projects.subtitle}
+            </p>
+          </Reveal>
+          <div className="mt-10 grid gap-6 sm:grid-cols-2">
+            {projects.map((project, i) => (
+              <Reveal key={project.slug} delay={i * 70}>
+                <ProjectCard project={project} lang={lang} dict={dict} />
+              </Reveal>
+            ))}
+          </div>
+        </section>
+
+        {/* Contact */}
+        <section
+          id="contact"
+          className="scroll-mt-24 border-t border-border py-20"
+        >
+          <Reveal>
+            <h2 className="text-sm font-semibold uppercase tracking-widest text-accent">
+              {dict.contact.title}
+            </h2>
+            <p className="mt-2 text-2xl font-bold tracking-tight">
+              {dict.contact.subtitle}
+            </p>
+            <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted">
+              {dict.contact.body}
+            </p>
+            <a
+              href={`mailto:${profile.email}`}
+              className="mt-8 inline-block rounded-full bg-accent px-6 py-3 text-sm font-semibold text-white transition-opacity hover:opacity-90"
+            >
+              {dict.contact.email}
+            </a>
+          </Reveal>
+        </section>
+      </main>
+
+      <footer className="border-t border-border py-10">
+        <div className="mx-auto flex max-w-5xl flex-col items-center gap-2 px-6 text-sm text-muted sm:flex-row sm:justify-between">
+          <p>
+            © 2026 {profile.name}. {dict.footer.rights}
+          </p>
+          <div className="flex gap-4">
+            {profile.socials.github && (
+              <a
+                href={profile.socials.github}
+                target="_blank"
+                rel="noreferrer"
+                className="transition-colors hover:text-foreground"
+              >
+                GitHub
+              </a>
+            )}
+            {profile.socials.linkedin && (
+              <a
+                href={profile.socials.linkedin}
+                target="_blank"
+                rel="noreferrer"
+                className="transition-colors hover:text-foreground"
+              >
+                LinkedIn
+              </a>
+            )}
+          </div>
+        </div>
+      </footer>
+    </>
+  );
+}
