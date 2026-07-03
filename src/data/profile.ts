@@ -10,6 +10,8 @@ export const profile = {
     es: "Tacna, Perú",
     en: "Tacna, Peru",
   } satisfies Localized,
+  /** WhatsApp number in international format, digits only (for wa.me links). */
+  whatsapp: "51986110558",
   socials: {
     github: "https://github.com/javiladeveloper",
     linkedin: "",

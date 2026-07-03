@@ -14,10 +14,11 @@
   "hero": {
     "greeting": "Hi, I'm",
     "name": "Jonathan Avila",
-    "role": "Software Engineer — Backend, Fullstack & AI",
-    "tagline": "14+ years building software. Backend-focused, with strong fullstack range and generative AI in production: RAG architectures, LLM agents and serverless services on AWS.",
+    "role": "Founder of Norac Labs · Software Engineer",
+    "pitch": "We digitize and automate your business.",
+    "tagline": "We turn your manual processes into intelligent systems: apps, websites and AI automation. 14+ years building custom software.",
     "ctaProjects": "View projects",
-    "ctaContact": "Get in touch"
+    "ctaContact": "Let's talk"
   },
   "about": {
     "title": "About me",
@@ -27,7 +28,7 @@
   },
   "services": {
     "title": "Services",
-    "subtitle": "How I can help"
+    "subtitle": "How we help your business"
   },
   "experience": {
     "title": "Experience",
@@ -42,9 +43,10 @@
   },
   "contact": {
     "title": "Contact",
-    "subtitle": "Let's work together",
-    "body": "I'm open to new opportunities and collaborations. Drop me a line and I'll get back to you soon.",
-    "email": "Send email"
+    "subtitle": "Let's make your project real",
+    "body": "Tell me what you need for your business or project and I'll reply fast. Reach me on WhatsApp or email.",
+    "email": "Send email",
+    "whatsapp": "Message me on WhatsApp"
   },
   "footer": {
     "rights": "All rights reserved."

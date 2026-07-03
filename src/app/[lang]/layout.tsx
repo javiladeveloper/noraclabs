@@ -25,7 +25,7 @@ export async function generateMetadata({
   if (!hasLocale(lang)) return {};
   const dict = await getDictionary(lang);
   return {
-    metadataBase: new URL("https://noraclabs.com"),
+    metadataBase: new URL("https://www.noraclabs.com"),
     title: dict.meta.title,
     description: dict.meta.description,
     openGraph: {

@@ -9,6 +9,7 @@ import { ProjectCard } from "@/components/ProjectCard";
 import { SkillGraph } from "@/components/SkillGraph";
 import { Reveal } from "@/components/Reveal";
 import { ServiceIcon } from "@/components/ServiceIcon";
+import { WhatsAppFab } from "@/components/WhatsAppFab";
 
 export default async function Home({ params }: PageProps<"/[lang]">) {
   const { lang } = await params;
@@ -42,14 +43,14 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
           <div className="grid w-full items-center gap-12 md:grid-cols-[1.4fr_1fr]">
             <div>
               <p className="text-sm font-medium text-accent">
-                {dict.hero.greeting}
-              </p>
-              <h1 className="mt-2 text-5xl font-bold tracking-tight sm:text-6xl">
-                {dict.hero.name}
-              </h1>
-              <p className="mt-3 text-xl font-medium text-foreground sm:text-2xl">
+                {dict.hero.greeting}{" "}
+                <span className="text-foreground">{dict.hero.name}</span>
+                {" · "}
                 {dict.hero.role}
               </p>
+              <h1 className="mt-3 text-4xl font-bold tracking-tight sm:text-5xl">
+                {dict.hero.pitch}
+              </h1>
               <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted">
                 {dict.hero.tagline}
               </p>
@@ -243,21 +244,49 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted">
               {dict.contact.body}
             </p>
-            <a
-              href={`mailto:${profile.email}`}
-              className="mt-8 inline-block rounded-full bg-accent px-6 py-3 text-sm font-semibold text-white transition-opacity hover:opacity-90"
-            >
-              {dict.contact.email}
-            </a>
+            <div className="mt-8 flex flex-wrap gap-4">
+              <a
+                href={`https://wa.me/${profile.whatsapp}`}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 rounded-full bg-[#25D366] px-6 py-3 text-sm font-semibold text-black transition-opacity hover:opacity-90"
+              >
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  aria-hidden
+                >
+                  <path d="M17.5 14.4c-.3-.15-1.7-.84-2-.94-.26-.1-.46-.15-.65.15-.2.3-.75.94-.92 1.13-.17.2-.34.22-.63.08-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.65-2.05-.17-.3-.02-.46.13-.6.13-.13.3-.34.44-.51.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.65-1.57-.9-2.15-.24-.56-.48-.48-.65-.49h-.56c-.2 0-.5.07-.77.37-.26.3-1 .98-1 2.4 0 1.4 1.02 2.76 1.17 2.95.15.2 2.02 3.08 4.9 4.32.68.3 1.22.47 1.63.6.69.22 1.31.19 1.8.11.55-.08 1.7-.69 1.94-1.36.24-.67.24-1.24.17-1.36-.07-.12-.27-.19-.56-.34zM12 2a10 10 0 0 0-8.5 15.3L2 22l4.8-1.5A10 10 0 1 0 12 2z" />
+                </svg>
+                {dict.contact.whatsapp}
+              </a>
+              <a
+                href={`mailto:${profile.email}`}
+                className="inline-block rounded-full border border-border px-6 py-3 text-sm font-semibold text-muted transition-colors hover:text-foreground"
+              >
+                {dict.contact.email}
+              </a>
+            </div>
           </Reveal>
         </section>
       </main>
 
       <footer className="border-t border-border py-10">
-        <div className="mx-auto flex max-w-5xl flex-col items-center gap-2 px-6 text-sm text-muted sm:flex-row sm:justify-between">
-          <p>
-            © 2026 {profile.name}. {dict.footer.rights}
-          </p>
+        <div className="mx-auto flex max-w-5xl flex-col items-center gap-4 px-6 text-sm text-muted sm:flex-row sm:justify-between">
+          <div className="flex items-center gap-2.5">
+            <Image
+              src="/logo-norac.png"
+              alt="Norac Labs"
+              width={24}
+              height={24}
+              className="h-6 w-6"
+            />
+            <p>
+              © 2026 Norac Labs. {dict.footer.rights}
+            </p>
+          </div>
           <div className="flex gap-4">
             {profile.socials.github && (
               <a
@@ -282,6 +311,8 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
           </div>
         </div>
       </footer>
+
+      <WhatsAppFab number={profile.whatsapp} label={dict.contact.whatsapp} />
     </>
   );
 }

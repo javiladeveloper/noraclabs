@@ -43,34 +43,34 @@ export type Service = {
 export const services: Service[] = [
   {
     icon: "ai",
-    title: { es: "IA Generativa & RAG", en: "Generative AI & RAG" },
+    title: { es: "Automatización con IA", en: "AI automation" },
     body: {
-      es: "Sistemas RAG, agentes LLM y pipelines NLP listos para producción — con foco en precisión, trazabilidad y control de costos.",
-      en: "Production-ready RAG systems, LLM agents and NLP pipelines — focused on accuracy, traceability and cost control.",
-    },
-  },
-  {
-    icon: "architecture",
-    title: { es: "Arquitectura de sistemas", en: "System architecture" },
-    body: {
-      es: "Diseño de arquitecturas serverless y event-driven en AWS, con Clean/Onion Architecture y foco en escalabilidad.",
-      en: "Serverless and event-driven architectures on AWS, with Clean/Onion Architecture and a focus on scalability.",
+      es: "Automatizamos tareas repetitivas y respuestas a clientes con inteligencia artificial, para que tu equipo dedique su tiempo a lo importante.",
+      en: "We automate repetitive tasks and customer replies with AI, so your team can spend time on what matters.",
     },
   },
   {
     icon: "cloud",
-    title: { es: "Backend & APIs", en: "Backend & APIs" },
+    title: { es: "Apps y páginas web a medida", en: "Custom apps & websites" },
     body: {
-      es: "APIs REST/GraphQL y microservicios en Python y Node.js, con latencias por debajo de 200 ms y resiliencia real.",
-      en: "REST/GraphQL APIs and microservices in Python and Node.js, with sub-200ms latency and real resilience.",
+      es: "Diseñamos y desarrollamos aplicaciones móviles y sitios web hechos para tu negocio, rápidos y fáciles de usar.",
+      en: "We design and build mobile apps and websites made for your business — fast and easy to use.",
+    },
+  },
+  {
+    icon: "architecture",
+    title: { es: "Sistemas de gestión", en: "Management systems" },
+    body: {
+      es: "Digitalizamos tus procesos: ventas, clientes, inventario o citas en un solo sistema ordenado y accesible desde cualquier lugar.",
+      en: "We digitize your processes — sales, clients, inventory or appointments — in one tidy system, accessible from anywhere.",
     },
   },
   {
     icon: "data",
-    title: { es: "Datos escalables", en: "Scalable data systems" },
+    title: { es: "Integraciones y datos", en: "Integrations & data" },
     body: {
-      es: "Modelado de datos SQL y NoSQL, búsqueda semántica con vector DBs y pipelines de datos para volúmenes altos.",
-      en: "SQL and NoSQL data modeling, semantic search with vector DBs and data pipelines for high volumes.",
+      es: "Conectamos tus herramientas (pagos, WhatsApp, facturación) y ordenamos tu información para que tomes mejores decisiones.",
+      en: "We connect your tools (payments, WhatsApp, billing) and organize your data so you make better decisions.",
     },
   },
 ];
