@@ -50,12 +50,35 @@
     "form": {
       "name": "Your name",
       "company": "Company or business (optional)",
+      "phone": "Your phone (optional)",
       "type": "Project type",
       "typeOptions": {
         "app": "Mobile app",
         "web": "Website",
         "ai": "AI automation",
         "system": "Management system",
+        "other": "Other"
+      },
+      "budget": "Estimated budget",
+      "budgetOptions": {
+        "s1": "Under $300",
+        "s2": "$300 – 1,500",
+        "s3": "$1,500 – 4,000",
+        "s4": "Over $4,000",
+        "tbd": "To be defined"
+      },
+      "timeline": "Timeline",
+      "timelineOptions": {
+        "asap": "As soon as possible",
+        "months": "In 1 – 3 months",
+        "flexible": "No rush",
+        "quote": "Just getting a quote"
+      },
+      "source": "How did you find us?",
+      "sourceOptions": {
+        "google": "Google / search",
+        "social": "Social media",
+        "referral": "Referral",
         "other": "Other"
       },
       "message": "Tell me what you need…",

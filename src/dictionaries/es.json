@@ -50,12 +50,35 @@
     "form": {
       "name": "Tu nombre",
       "company": "Empresa o negocio (opcional)",
+      "phone": "Tu teléfono (opcional)",
       "type": "Tipo de proyecto",
       "typeOptions": {
         "app": "App móvil",
         "web": "Página web",
         "ai": "Automatización con IA",
         "system": "Sistema de gestión",
+        "other": "Otro"
+      },
+      "budget": "Presupuesto estimado",
+      "budgetOptions": {
+        "s1": "Menos de S/ 1,000",
+        "s2": "S/ 1,000 – 5,000",
+        "s3": "S/ 5,000 – 15,000",
+        "s4": "Más de S/ 15,000",
+        "tbd": "A definir"
+      },
+      "timeline": "Plazo",
+      "timelineOptions": {
+        "asap": "Lo antes posible",
+        "months": "En 1 – 3 meses",
+        "flexible": "Sin apuro",
+        "quote": "Solo cotizando"
+      },
+      "source": "¿Cómo nos conociste?",
+      "sourceOptions": {
+        "google": "Google / búsqueda",
+        "social": "Redes sociales",
+        "referral": "Recomendación",
         "other": "Otro"
       },
       "message": "Cuéntame qué necesitas…",

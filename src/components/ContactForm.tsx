@@ -15,7 +15,11 @@ export function ContactForm({
   const f = dict.contact.form;
   const [name, setName] = useState("");
   const [company, setCompany] = useState("");
+  const [phone, setPhone] = useState("");
   const [type, setType] = useState("");
+  const [budget, setBudget] = useState("");
+  const [timeline, setTimeline] = useState("");
+  const [source, setSource] = useState("");
   const [message, setMessage] = useState("");
 
   const typeOptions = [
@@ -25,19 +29,46 @@ export function ContactForm({
     { key: "system", label: f.typeOptions.system },
     { key: "other", label: f.typeOptions.other },
   ];
+  const budgetOptions = [
+    { key: "s1", label: f.budgetOptions.s1 },
+    { key: "s2", label: f.budgetOptions.s2 },
+    { key: "s3", label: f.budgetOptions.s3 },
+    { key: "s4", label: f.budgetOptions.s4 },
+    { key: "tbd", label: f.budgetOptions.tbd },
+  ];
+  const timelineOptions = [
+    { key: "asap", label: f.timelineOptions.asap },
+    { key: "months", label: f.timelineOptions.months },
+    { key: "flexible", label: f.timelineOptions.flexible },
+    { key: "quote", label: f.timelineOptions.quote },
+  ];
+  const sourceOptions = [
+    { key: "google", label: f.sourceOptions.google },
+    { key: "social", label: f.sourceOptions.social },
+    { key: "referral", label: f.sourceOptions.referral },
+    { key: "other", label: f.sourceOptions.other },
+  ];
 
-  /** Human-readable body shared by both channels. */
+  const labelOf = (
+    opts: { key: string; label: string }[],
+    key: string,
+  ) => opts.find((o) => o.key === key)?.label ?? "—";
+
+  /** Human-readable body shared by both channels (skips empty fields). */
   function buildBody() {
-    const typeLabel =
-      typeOptions.find((o) => o.key === type)?.label ?? "—";
-    const lines = [
-      `${f.name}: ${name || "—"}`,
-      `${f.company}: ${company || "—"}`,
-      `${f.type}: ${typeLabel}`,
-      "",
-      `${message || "—"}`,
+    const rows: [string, string][] = [
+      [f.name, name],
+      [f.company, company],
+      [f.phone, phone],
+      [f.type, type ? labelOf(typeOptions, type) : ""],
+      [f.budget, budget ? labelOf(budgetOptions, budget) : ""],
+      [f.timeline, timeline ? labelOf(timelineOptions, timeline) : ""],
+      [f.source, source ? labelOf(sourceOptions, source) : ""],
     ];
-    return lines.join("\n");
+    const filled = rows
+      .filter(([, v]) => v && v.trim())
+      .map(([k, v]) => `${k}: ${v}`);
+    return [...filled, "", message.trim()].join("\n");
   }
 
   const disabled = !name.trim() || !message.trim();
@@ -55,6 +86,7 @@ export function ContactForm({
 
   const inputClass =
     "w-full rounded-xl border border-border bg-card/50 px-4 py-3 text-sm text-foreground placeholder:text-muted focus:border-accent focus:outline-none";
+  const selectClass = `${inputClass} appearance-none`;
 
   return (
     <div className="mt-8 max-w-xl">
@@ -73,21 +105,72 @@ export function ContactForm({
           onChange={(e) => setCompany(e.target.value)}
           className={inputClass}
         />
+        <input
+          type="tel"
+          placeholder={f.phone}
+          value={phone}
+          onChange={(e) => setPhone(e.target.value)}
+          className={inputClass}
+        />
+        <select
+          value={type}
+          onChange={(e) => setType(e.target.value)}
+          className={selectClass}
+        >
+          <option value="" disabled>
+            {f.type}
+          </option>
+          {typeOptions.map((o) => (
+            <option key={o.key} value={o.key}>
+              {o.label}
+            </option>
+          ))}
+        </select>
+        <select
+          value={budget}
+          onChange={(e) => setBudget(e.target.value)}
+          className={selectClass}
+        >
+          <option value="" disabled>
+            {f.budget}
+          </option>
+          {budgetOptions.map((o) => (
+            <option key={o.key} value={o.key}>
+              {o.label}
+            </option>
+          ))}
+        </select>
+        <select
+          value={timeline}
+          onChange={(e) => setTimeline(e.target.value)}
+          className={selectClass}
+        >
+          <option value="" disabled>
+            {f.timeline}
+          </option>
+          {timelineOptions.map((o) => (
+            <option key={o.key} value={o.key}>
+              {o.label}
+            </option>
+          ))}
+        </select>
       </div>
+
       <select
-        value={type}
-        onChange={(e) => setType(e.target.value)}
-        className={`${inputClass} mt-3 appearance-none`}
+        value={source}
+        onChange={(e) => setSource(e.target.value)}
+        className={`${selectClass} mt-3`}
       >
         <option value="" disabled>
-          {f.type}
+          {f.source}
         </option>
-        {typeOptions.map((o) => (
+        {sourceOptions.map((o) => (
           <option key={o.key} value={o.key}>
             {o.label}
           </option>
         ))}
       </select>
+
       <textarea
         placeholder={f.message}
         value={message}
@@ -95,6 +178,7 @@ export function ContactForm({
         rows={4}
         className={`${inputClass} mt-3 resize-none`}
       />
+
       <div className="mt-4 flex flex-wrap gap-3">
         <button
           type="button"
