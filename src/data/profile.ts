@@ -12,6 +12,8 @@ export const profile = {
   } satisfies Localized,
   /** WhatsApp number in international format, digits only (for wa.me links). */
   whatsapp: "51986110558",
+  /** Web3Forms access key — the contact form posts here so submissions arrive by email. */
+  web3formsKey: "25250ef3-cb09-4fde-a437-2f39ec167f37",
   socials: {
     github: "https://github.com/javiladeveloper",
     linkedin: "https://www.linkedin.com/in/jonathan-joan-avila-huamolle-4b996674/",

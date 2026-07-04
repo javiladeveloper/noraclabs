@@ -103,8 +103,11 @@
         "other": "Other"
       },
       "message": "Tell me what you need…",
-      "sendEmail": "Send by email",
+      "sendEmail": "Send",
       "sendWhatsapp": "Send by WhatsApp",
+      "sending": "Sending…",
+      "success": "Thanks! I got your message and will reply soon.",
+      "error": "Something went wrong. Message me on WhatsApp or try again.",
       "subject": "New contact from noraclabs.com"
     }
   },

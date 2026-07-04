@@ -103,8 +103,11 @@
         "other": "Otro"
       },
       "message": "Cuéntame qué necesitas…",
-      "sendEmail": "Enviar por correo",
+      "sendEmail": "Enviar",
       "sendWhatsapp": "Enviar por WhatsApp",
+      "sending": "Enviando…",
+      "success": "¡Gracias! Recibí tu mensaje y te responderé pronto.",
+      "error": "Ocurrió un error. Escríbeme por WhatsApp o inténtalo de nuevo.",
       "subject": "Nuevo contacto desde noraclabs.com"
     }
   },

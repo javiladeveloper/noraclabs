@@ -382,6 +382,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
               dict={dict}
               email={profile.email}
               whatsapp={profile.whatsapp}
+              formKey={profile.web3formsKey}
             />
           </Reveal>
         </section>

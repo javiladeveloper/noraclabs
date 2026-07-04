@@ -50,3 +50,6 @@ _applogos/
 Gemini_Generated_Image_*.png
 # CVs de origen en la raíz (el CV publicado vive en /public)
 /Jonathan_Avila_AI_Engineer_CV*.pdf
+
+# Material de marca (tarjetas, logos fuente)
+brand/

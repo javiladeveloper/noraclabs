@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find \"$HOME\" \"/d/Personal Proyects/noraclabs\" -type f \\\\\\( -iname \"*re192re192*\" -o -iname \"*cwdqj9cwdqj9*\" \\\\\\) 2>/dev/null)",
+      "Read(//c/Users/USUARIO/**)"
+    ]
+  }
+}
