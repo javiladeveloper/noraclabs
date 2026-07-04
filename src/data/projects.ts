@@ -20,6 +20,27 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    slug: "fitcontrol",
+    name: "FitControl",
+    year: "2025",
+    tagline: {
+      es: "El sistema operativo para gimnasios.",
+      en: "The operating system for gyms.",
+    },
+    description: {
+      es: "Plataforma todo-en-uno para gimnasios, academias y entrenadores: control de accesos, cobros, gestión de socios y su propia página web para captar clientes.",
+      en: "All-in-one platform for gyms, studios and personal trainers: access control, payments, member management and their own website to attract clients.",
+    },
+    role: {
+      es: "Fundador y desarrollador",
+      en: "Founder & developer",
+    },
+    tech: ["Next.js", "TypeScript", "Node.js", "Tailwind CSS"],
+    url: "https://fitcorecenter.com/",
+    icon: "/icon-fitcontrol.png",
+    accent: "#FF6B35",
+  },
+  {
     slug: "ciudadano-alerta",
     name: "Ciudadano Alerta",
     year: "2024",
