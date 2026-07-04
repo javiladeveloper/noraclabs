@@ -14,7 +14,7 @@ export const profile = {
   whatsapp: "51986110558",
   socials: {
     github: "https://github.com/javiladeveloper",
-    linkedin: "",
+    linkedin: "https://www.linkedin.com/in/jonathan-joan-avila-huamolle-4b996674/",
     website: "",
   },
   /** Path to the CV file placed in /public. Leave empty to hide the button. */
