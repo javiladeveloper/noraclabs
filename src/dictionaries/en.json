@@ -44,9 +44,25 @@
   "contact": {
     "title": "Contact",
     "subtitle": "Let's make your project real",
-    "body": "Tell me what you need for your business or project and I'll reply fast. Reach me on WhatsApp or email.",
+    "body": "Tell me what you need and I'll reply fast. Fill in the details and choose how to reach me.",
     "email": "Send email",
-    "whatsapp": "Message me on WhatsApp"
+    "whatsapp": "Message me on WhatsApp",
+    "form": {
+      "name": "Your name",
+      "company": "Company or business (optional)",
+      "type": "Project type",
+      "typeOptions": {
+        "app": "Mobile app",
+        "web": "Website",
+        "ai": "AI automation",
+        "system": "Management system",
+        "other": "Other"
+      },
+      "message": "Tell me what you need…",
+      "sendEmail": "Send by email",
+      "sendWhatsapp": "Send by WhatsApp",
+      "subject": "New contact from noraclabs.com"
+    }
   },
   "footer": {
     "rights": "All rights reserved."

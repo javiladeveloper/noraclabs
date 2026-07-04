@@ -10,6 +10,7 @@ import { SkillGraph } from "@/components/SkillGraph";
 import { Reveal } from "@/components/Reveal";
 import { ServiceIcon } from "@/components/ServiceIcon";
 import { WhatsAppFab } from "@/components/WhatsAppFab";
+import { ContactForm } from "@/components/ContactForm";
 
 export default async function Home({ params }: PageProps<"/[lang]">) {
   const { lang } = await params;
@@ -244,31 +245,11 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted">
               {dict.contact.body}
             </p>
-            <div className="mt-8 flex flex-wrap gap-4">
-              <a
-                href={`https://wa.me/${profile.whatsapp}`}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-2 rounded-full bg-[#25D366] px-6 py-3 text-sm font-semibold text-black transition-opacity hover:opacity-90"
-              >
-                <svg
-                  width="18"
-                  height="18"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  aria-hidden
-                >
-                  <path d="M17.5 14.4c-.3-.15-1.7-.84-2-.94-.26-.1-.46-.15-.65.15-.2.3-.75.94-.92 1.13-.17.2-.34.22-.63.08-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.65-2.05-.17-.3-.02-.46.13-.6.13-.13.3-.34.44-.51.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.65-1.57-.9-2.15-.24-.56-.48-.48-.65-.49h-.56c-.2 0-.5.07-.77.37-.26.3-1 .98-1 2.4 0 1.4 1.02 2.76 1.17 2.95.15.2 2.02 3.08 4.9 4.32.68.3 1.22.47 1.63.6.69.22 1.31.19 1.8.11.55-.08 1.7-.69 1.94-1.36.24-.67.24-1.24.17-1.36-.07-.12-.27-.19-.56-.34zM12 2a10 10 0 0 0-8.5 15.3L2 22l4.8-1.5A10 10 0 1 0 12 2z" />
-                </svg>
-                {dict.contact.whatsapp}
-              </a>
-              <a
-                href={`mailto:${profile.email}`}
-                className="inline-block rounded-full border border-border px-6 py-3 text-sm font-semibold text-muted transition-colors hover:text-foreground"
-              >
-                {dict.contact.email}
-              </a>
-            </div>
+            <ContactForm
+              dict={dict}
+              email={profile.email}
+              whatsapp={profile.whatsapp}
+            />
           </Reveal>
         </section>
       </main>

@@ -44,9 +44,25 @@
   "contact": {
     "title": "Contacto",
     "subtitle": "¿Hacemos tu proyecto realidad?",
-    "body": "Cuéntame qué necesitas para tu empresa o proyecto y te respondo rápido. Escríbeme por WhatsApp o correo.",
+    "body": "Cuéntame qué necesitas y te respondo rápido. Completa los datos y elige por dónde prefieres contactarme.",
     "email": "Enviar correo",
-    "whatsapp": "Escríbeme por WhatsApp"
+    "whatsapp": "Escríbeme por WhatsApp",
+    "form": {
+      "name": "Tu nombre",
+      "company": "Empresa o negocio (opcional)",
+      "type": "Tipo de proyecto",
+      "typeOptions": {
+        "app": "App móvil",
+        "web": "Página web",
+        "ai": "Automatización con IA",
+        "system": "Sistema de gestión",
+        "other": "Otro"
+      },
+      "message": "Cuéntame qué necesitas…",
+      "sendEmail": "Enviar por correo",
+      "sendWhatsapp": "Enviar por WhatsApp",
+      "subject": "Nuevo contacto desde noraclabs.com"
+    }
   },
   "footer": {
     "rights": "Todos los derechos reservados."
