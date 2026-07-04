@@ -15,6 +15,7 @@ export function Navbar({
     { href: `/${lang}#services`, label: dict.nav.services },
     { href: `/${lang}#experience`, label: dict.nav.experience },
     { href: `/${lang}#projects`, label: dict.nav.projects },
+    { href: `/${lang}#faq`, label: dict.nav.faq },
     { href: `/${lang}#contact`, label: dict.nav.contact },
   ];
 

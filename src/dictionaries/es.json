@@ -8,6 +8,7 @@
     "services": "Servicios",
     "experience": "Experiencia",
     "projects": "Proyectos",
+    "faq": "FAQ",
     "contact": "Contacto",
     "resume": "Descargar CV"
   },
@@ -29,6 +30,26 @@
   "services": {
     "title": "Servicios",
     "subtitle": "Cómo ayudamos a tu negocio"
+  },
+  "benefits": {
+    "title": "Por qué elegirnos",
+    "subtitle": "Tecnología sin dolores de cabeza"
+  },
+  "process": {
+    "title": "Cómo trabajamos",
+    "subtitle": "Simple, claro y de principio a fin"
+  },
+  "faq": {
+    "title": "Preguntas frecuentes",
+    "subtitle": "Lo que todos preguntan"
+  },
+  "tech": {
+    "title": "Tecnologías con las que trabajamos"
+  },
+  "cta": {
+    "title": "¿Tienes una idea en mente?",
+    "body": "Cuéntanos qué necesitas y te ayudamos a hacerlo realidad.",
+    "button": "Hablemos por WhatsApp"
   },
   "experience": {
     "title": "Experiencia",

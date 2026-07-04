@@ -8,6 +8,7 @@
     "services": "Services",
     "experience": "Experience",
     "projects": "Projects",
+    "faq": "FAQ",
     "contact": "Contact",
     "resume": "Download CV"
   },
@@ -29,6 +30,26 @@
   "services": {
     "title": "Services",
     "subtitle": "How we help your business"
+  },
+  "benefits": {
+    "title": "Why choose us",
+    "subtitle": "Technology without the headaches"
+  },
+  "process": {
+    "title": "How we work",
+    "subtitle": "Simple, clear, end to end"
+  },
+  "faq": {
+    "title": "Frequently asked questions",
+    "subtitle": "What everyone asks"
+  },
+  "tech": {
+    "title": "Technologies we work with"
+  },
+  "cta": {
+    "title": "Got an idea in mind?",
+    "body": "Tell us what you need and we'll help you make it real.",
+    "button": "Let's talk on WhatsApp"
   },
   "experience": {
     "title": "Experience",

@@ -4,6 +4,7 @@ import { getDictionary, hasLocale } from "@/dictionaries";
 import { projects } from "@/data/projects";
 import { profile, experience } from "@/data/profile";
 import { metrics, services } from "@/data/highlights";
+import { steps, benefits, techBadges } from "@/data/content";
 import { Navbar } from "@/components/Navbar";
 import { ProjectCard } from "@/components/ProjectCard";
 import { SkillGraph } from "@/components/SkillGraph";
@@ -11,6 +12,9 @@ import { Reveal } from "@/components/Reveal";
 import { ServiceIcon } from "@/components/ServiceIcon";
 import { WhatsAppFab } from "@/components/WhatsAppFab";
 import { ContactForm } from "@/components/ContactForm";
+import { CountUp } from "@/components/CountUp";
+import { Icon } from "@/components/Icon";
+import { Faq } from "@/components/Faq";
 
 export default async function Home({ params }: PageProps<"/[lang]">) {
   const { lang } = await params;
@@ -106,8 +110,8 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
           <section className="grid grid-cols-2 gap-6 border-t border-border py-12 sm:grid-cols-4">
             {metrics.map((m) => (
               <div key={m.value} className="text-center sm:text-left">
-                <div className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-                  {m.value}
+                <div className="text-3xl font-bold tracking-tight text-accent sm:text-4xl">
+                  <CountUp value={m.value} />
                 </div>
                 <div className="mt-1 text-xs leading-snug text-muted">
                   {m.label[lang]}
@@ -156,7 +160,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
           <div className="mt-10 grid gap-6 sm:grid-cols-2">
             {services.map((s, i) => (
               <Reveal key={s.icon} delay={i * 70}>
-                <div className="flex h-full gap-4 rounded-2xl border border-border bg-card/50 p-6 transition-colors hover:border-accent/50">
+                <div className="group flex h-full gap-4 rounded-2xl border border-border bg-card/50 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-accent/60 hover:shadow-[0_8px_30px_-10px_var(--accent)]">
                   <ServiceIcon name={s.icon} />
                   <div>
                     <h3 className="font-semibold">{s.title[lang]}</h3>
@@ -164,6 +168,63 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
                       {s.body[lang]}
                     </p>
                   </div>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </section>
+
+        {/* Benefits — why choose us */}
+        <section className="scroll-mt-24 border-t border-border py-20">
+          <Reveal>
+            <h2 className="text-sm font-semibold uppercase tracking-widest text-accent">
+              {dict.benefits.title}
+            </h2>
+            <p className="mt-2 text-2xl font-bold tracking-tight">
+              {dict.benefits.subtitle}
+            </p>
+          </Reveal>
+          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {benefits.map((b, i) => (
+              <Reveal key={b.icon} delay={i * 70}>
+                <div className="group h-full rounded-2xl border border-border bg-card/50 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-accent/60 hover:shadow-[0_8px_30px_-10px_var(--accent)]">
+                  <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-border text-accent transition-colors group-hover:border-accent/60">
+                    <Icon name={b.icon} />
+                  </span>
+                  <h3 className="mt-4 font-semibold">{b.title[lang]}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-muted">
+                    {b.body[lang]}
+                  </p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </section>
+
+        {/* Process — how we work */}
+        <section className="scroll-mt-24 border-t border-border py-20">
+          <Reveal>
+            <h2 className="text-sm font-semibold uppercase tracking-widest text-accent">
+              {dict.process.title}
+            </h2>
+            <p className="mt-2 text-2xl font-bold tracking-tight">
+              {dict.process.subtitle}
+            </p>
+          </Reveal>
+          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {steps.map((s, i) => (
+              <Reveal key={s.icon} delay={i * 90}>
+                <div className="relative h-full rounded-2xl border border-border bg-card/50 p-6">
+                  <span className="absolute right-5 top-5 text-4xl font-bold text-border">
+                    {i + 1}
+                  </span>
+                  <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-accent/15 text-accent">
+                    <Icon name={s.icon} />
+                  </span>
+                  <h3 className="mt-4 font-semibold">{s.title[lang]}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-muted">
+                    {s.body[lang]}
+                  </p>
                 </div>
               </Reveal>
             ))}
@@ -228,6 +289,78 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
               </Reveal>
             ))}
           </div>
+        </section>
+
+        {/* Tech badges */}
+        <section className="border-t border-border py-14">
+          <Reveal>
+            <p className="text-center text-xs font-semibold uppercase tracking-widest text-muted">
+              {dict.tech.title}
+            </p>
+            <div className="mt-6 flex flex-wrap items-center justify-center gap-x-8 gap-y-3">
+              {techBadges.map((t) => (
+                <span
+                  key={t}
+                  className="text-sm font-medium text-muted/80 transition-colors hover:text-foreground"
+                >
+                  {t}
+                </span>
+              ))}
+            </div>
+          </Reveal>
+        </section>
+
+        {/* FAQ */}
+        <section
+          id="faq"
+          className="scroll-mt-24 border-t border-border py-20"
+        >
+          <Reveal>
+            <h2 className="text-sm font-semibold uppercase tracking-widest text-accent">
+              {dict.faq.title}
+            </h2>
+            <p className="mt-2 text-2xl font-bold tracking-tight">
+              {dict.faq.subtitle}
+            </p>
+          </Reveal>
+          <Reveal delay={80}>
+            <Faq lang={lang} />
+          </Reveal>
+        </section>
+
+        {/* CTA banner */}
+        <section className="py-16">
+          <Reveal>
+            <div className="relative overflow-hidden rounded-3xl border border-accent/30 bg-accent/10 px-8 py-14 text-center">
+              <div
+                className="pointer-events-none absolute -inset-px opacity-60 blur-2xl"
+                style={{
+                  background:
+                    "radial-gradient(ellipse at center, var(--accent), transparent 70%)",
+                }}
+                aria-hidden
+              />
+              <div className="relative">
+                <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">
+                  {dict.cta.title}
+                </h2>
+                <p className="mx-auto mt-3 max-w-md text-muted">
+                  {dict.cta.body}
+                </p>
+                <a
+                  href={`https://wa.me/${profile.whatsapp}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="mt-8 inline-flex items-center gap-2 rounded-full bg-[#25D366] px-7 py-3.5 text-sm font-semibold text-black transition-transform hover:scale-105"
+                >
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+                    <path d="M17.5 14.4c-.3-.15-1.7-.84-2-.94-.26-.1-.46-.15-.65.15-.2.3-.75.94-.92 1.13-.17.2-.34.22-.63.08-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.65-2.05-.17-.3-.02-.46.13-.6.13-.13.3-.34.44-.51.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.65-1.57-.9-2.15-.24-.56-.48-.48-.65-.49h-.56c-.2 0-.5.07-.77.37-.26.3-1 .98-1 2.4 0 1.4 1.02 2.76 1.17 2.95.15.2 2.02 3.08 4.9 4.32.68.3 1.22.47 1.63.6.69.22 1.31.19 1.8.11.55-.08 1.7-.69 1.94-1.36.24-.67.24-1.24.17-1.36-.07-.12-.27-.19-.56-.34zM12 2a10 10 0 0 0-8.5 15.3L2 22l4.8-1.5A10 10 0 1 0 12 2z" />
+                  </svg>
+                  {dict.cta.button}
+                </a>
+              </div>
+            </div>
+          </Reveal>
         </section>
 
         {/* Contact */}
