@@ -115,6 +115,7 @@
       "sending": "Sending…",
       "success": "Thanks! I got your message and will reply soon.",
       "error": "Something went wrong. Message me on WhatsApp or try again.",
+      "rateLimit": "Please wait a moment before sending another message.",
       "subject": "New contact from noraclabs.com"
     }
   },

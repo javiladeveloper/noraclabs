@@ -24,9 +24,10 @@ export function ContactForm({
   const [timeline, setTimeline] = useState("");
   const [source, setSource] = useState("");
   const [message, setMessage] = useState("");
-  const [status, setStatus] = useState<"idle" | "sending" | "ok" | "error">(
-    "idle",
-  );
+  const [botcheck, setBotcheck] = useState(""); // honeypot: humans leave it empty
+  const [status, setStatus] = useState<
+    "idle" | "sending" | "ok" | "error" | "rate"
+  >("idle");
 
   const typeOptions = [
     { key: "app", label: f.typeOptions.app },
@@ -89,6 +90,27 @@ export function ContactForm({
     e.preventDefault();
     if (disabled) return;
 
+    // Honeypot: if the hidden field is filled, it's a bot — silently drop.
+    if (botcheck) {
+      setStatus("ok"); // pretend success so the bot doesn't retry
+      return;
+    }
+
+    // Client-side rate limit: min 30s between sends, max 5 per hour.
+    try {
+      const now = Date.now();
+      const raw = localStorage.getItem("nl_contact_sends");
+      const sends: number[] = raw ? JSON.parse(raw) : [];
+      const recent = sends.filter((t) => now - t < 60 * 60 * 1000); // last hour
+      const last = recent[recent.length - 1] ?? 0;
+      if (now - last < 30 * 1000 || recent.length >= 5) {
+        setStatus("rate");
+        return;
+      }
+    } catch {
+      // localStorage unavailable → skip the limit rather than break sending.
+    }
+
     // If the key isn't set, show the error (offer WhatsApp) — never open a
     // mailto:, which triggers the browser's "pick an app" dialog.
     if (!configured) {
@@ -106,6 +128,7 @@ export function ContactForm({
         },
         body: JSON.stringify({
           access_key: formKey,
+          botcheck: false, // enables Web3Forms' built-in bot/spam filtering
           // Clearer subject: name + project type at a glance.
           subject: `${f.subject}${name ? ` — ${name}` : ""}${
             type ? ` (${labelOf(typeOptions, type)})` : ""
@@ -126,6 +149,19 @@ export function ContactForm({
         }),
       });
       if (res.ok) {
+        // Record this successful send for the rate limiter.
+        try {
+          const now = Date.now();
+          const raw = localStorage.getItem("nl_contact_sends");
+          const sends: number[] = raw ? JSON.parse(raw) : [];
+          sends.push(now);
+          localStorage.setItem(
+            "nl_contact_sends",
+            JSON.stringify(sends.filter((t) => now - t < 60 * 60 * 1000)),
+          );
+        } catch {
+          /* ignore */
+        }
         setStatus("ok");
         setName("");
         setClientEmail("");
@@ -199,6 +235,17 @@ export function ContactForm({
 
   return (
     <form onSubmit={submit} className="mt-8 max-w-xl">
+      {/* Honeypot: hidden from users, bots tend to fill it. */}
+      <input
+        type="text"
+        name="botcheck"
+        tabIndex={-1}
+        autoComplete="off"
+        value={botcheck}
+        onChange={(e) => setBotcheck(e.target.value)}
+        className="absolute left-[-9999px] h-0 w-0 opacity-0"
+        aria-hidden
+      />
       <div className="grid gap-3 sm:grid-cols-2">
         <input type="text" placeholder={f.name} value={name} onChange={(e) => setName(e.target.value)} className={inputClass} />
         <input type="email" placeholder={f.email} value={clientEmail} onChange={(e) => setClientEmail(e.target.value)} className={inputClass} />
@@ -217,6 +264,9 @@ export function ContactForm({
 
       {status === "error" && (
         <p className="mt-3 text-sm text-red-400">{f.error}</p>
+      )}
+      {status === "rate" && (
+        <p className="mt-3 text-sm text-amber-400">{f.rateLimit}</p>
       )}
 
       <div className="mt-4 flex flex-wrap gap-3">

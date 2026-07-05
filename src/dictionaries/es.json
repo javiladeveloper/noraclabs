@@ -115,6 +115,7 @@
       "sending": "Enviando…",
       "success": "¡Gracias! Recibí tu mensaje y te responderé pronto.",
       "error": "Ocurrió un error. Escríbeme por WhatsApp o inténtalo de nuevo.",
+      "rateLimit": "Espera un momento antes de enviar otro mensaje.",
       "subject": "Nuevo contacto desde noraclabs.com"
     }
   },
