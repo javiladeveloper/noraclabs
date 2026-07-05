@@ -81,11 +81,10 @@ export function ContactForm({
     e.preventDefault();
     if (disabled) return;
 
-    // Fallback: if the key isn't set yet, open a prefilled email.
+    // If the key isn't set, show the error (offer WhatsApp) — never open a
+    // mailto:, which triggers the browser's "pick an app" dialog.
     if (!configured) {
-      const subject = encodeURIComponent(f.subject);
-      const body = encodeURIComponent(buildBody());
-      window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
+      setStatus("error");
       return;
     }
 
