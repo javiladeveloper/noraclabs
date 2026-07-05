@@ -70,6 +70,7 @@
     "whatsapp": "Escríbeme por WhatsApp",
     "form": {
       "name": "Tu nombre",
+      "email": "Tu correo (opcional)",
       "company": "Empresa o negocio (opcional)",
       "phone": "Tu teléfono (opcional)",
       "type": "Tipo de proyecto",

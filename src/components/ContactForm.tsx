@@ -16,6 +16,7 @@ export function ContactForm({
 }) {
   const f = dict.contact.form;
   const [name, setName] = useState("");
+  const [clientEmail, setClientEmail] = useState("");
   const [company, setCompany] = useState("");
   const [phone, setPhone] = useState("");
   const [type, setType] = useState("");
@@ -67,6 +68,7 @@ export function ContactForm({
   function buildBody() {
     const rows: [string, string][] = [
       [f.name, name],
+      [f.email, clientEmail],
       [f.company, company],
       [f.phone, phone],
       [f.type, type ? labelOf(typeOptions, type) : ""],
@@ -104,10 +106,16 @@ export function ContactForm({
         },
         body: JSON.stringify({
           access_key: formKey,
-          subject: f.subject,
+          // Clearer subject: name + project type at a glance.
+          subject: `${f.subject}${name ? ` — ${name}` : ""}${
+            type ? ` (${labelOf(typeOptions, type)})` : ""
+          }`,
           from_name: name || "Norac Labs — contacto web",
+          // So "Reply" in your inbox goes straight to the client.
+          replyto: clientEmail || undefined,
           // structured fields so the email is readable
           Nombre: name,
+          Correo: clientEmail,
           Empresa: company,
           Teléfono: phone,
           Tipo: type ? labelOf(typeOptions, type) : "",
@@ -120,6 +128,7 @@ export function ContactForm({
       if (res.ok) {
         setStatus("ok");
         setName("");
+        setClientEmail("");
         setCompany("");
         setPhone("");
         setType("");
@@ -192,6 +201,7 @@ export function ContactForm({
     <form onSubmit={submit} className="mt-8 max-w-xl">
       <div className="grid gap-3 sm:grid-cols-2">
         <input type="text" placeholder={f.name} value={name} onChange={(e) => setName(e.target.value)} className={inputClass} />
+        <input type="email" placeholder={f.email} value={clientEmail} onChange={(e) => setClientEmail(e.target.value)} className={inputClass} />
         <input type="text" placeholder={f.company} value={company} onChange={(e) => setCompany(e.target.value)} className={inputClass} />
         <input type="tel" placeholder={f.phone} value={phone} onChange={(e) => setPhone(e.target.value)} className={inputClass} />
         <Select value={type} onChange={setType} placeholder={f.type} options={typeOptions} />

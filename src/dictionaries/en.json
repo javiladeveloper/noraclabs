@@ -70,6 +70,7 @@
     "whatsapp": "Message me on WhatsApp",
     "form": {
       "name": "Your name",
+      "email": "Your email (optional)",
       "company": "Company or business (optional)",
       "phone": "Your phone (optional)",
       "type": "Project type",
