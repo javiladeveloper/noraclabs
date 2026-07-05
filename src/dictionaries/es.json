@@ -75,9 +75,15 @@
       "type": "Tipo de proyecto",
       "typeOptions": {
         "app": "App móvil",
-        "web": "Página web",
-        "ai": "Automatización con IA",
+        "web": "Página web / Landing",
+        "ecommerce": "Tienda online",
         "system": "Sistema de gestión",
+        "ai": "Automatización con IA",
+        "chatbot": "Chatbot / Asistente IA",
+        "integration": "Integraciones (pagos, WhatsApp…)",
+        "api": "API / Backend",
+        "consulting": "Consultoría / Asesoría",
+        "maintenance": "Mantenimiento / Soporte",
         "other": "Otro"
       },
       "budget": "Presupuesto estimado",

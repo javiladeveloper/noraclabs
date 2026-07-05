@@ -30,8 +30,14 @@ export function ContactForm({
   const typeOptions = [
     { key: "app", label: f.typeOptions.app },
     { key: "web", label: f.typeOptions.web },
-    { key: "ai", label: f.typeOptions.ai },
+    { key: "ecommerce", label: f.typeOptions.ecommerce },
     { key: "system", label: f.typeOptions.system },
+    { key: "ai", label: f.typeOptions.ai },
+    { key: "chatbot", label: f.typeOptions.chatbot },
+    { key: "integration", label: f.typeOptions.integration },
+    { key: "api", label: f.typeOptions.api },
+    { key: "consulting", label: f.typeOptions.consulting },
+    { key: "maintenance", label: f.typeOptions.maintenance },
     { key: "other", label: f.typeOptions.other },
   ];
   const budgetOptions = [
@@ -136,7 +142,43 @@ export function ContactForm({
 
   const inputClass =
     "w-full rounded-xl border border-border bg-card/50 px-4 py-3 text-sm text-foreground placeholder:text-muted focus:border-accent focus:outline-none";
-  const selectClass = `${inputClass} appearance-none`;
+  // Custom caret via inline SVG background; appearance-none removes the native one.
+  const caret =
+    "bg-[url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2216%22 height=%2216%22 fill=%22none%22 stroke=%22%23a1a1aa%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22><path d=%22M6 9l6 6 6-6%22/></svg>')] bg-[length:16px] bg-[right_1rem_center] bg-no-repeat pr-10";
+  const selectClass = `${inputClass} ${caret} appearance-none cursor-pointer`;
+  // Options need explicit colors so they're readable in the OS dropdown (dark theme).
+  const optStyle = { backgroundColor: "#14141b", color: "#ededed" };
+
+  // Reusable dark-friendly select. Grey text until a value is chosen.
+  function Select({
+    value,
+    onChange,
+    placeholder,
+    options,
+  }: {
+    value: string;
+    onChange: (v: string) => void;
+    placeholder: string;
+    options: { key: string; label: string }[];
+  }) {
+    return (
+      <select
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        className={selectClass}
+        style={{ color: value ? "#ededed" : "#a1a1aa" }}
+      >
+        <option value="" disabled style={optStyle}>
+          {placeholder}
+        </option>
+        {options.map((o) => (
+          <option key={o.key} value={o.key} style={optStyle}>
+            {o.label}
+          </option>
+        ))}
+      </select>
+    );
+  }
 
   if (status === "ok") {
     return (
@@ -152,24 +194,14 @@ export function ContactForm({
         <input type="text" placeholder={f.name} value={name} onChange={(e) => setName(e.target.value)} className={inputClass} />
         <input type="text" placeholder={f.company} value={company} onChange={(e) => setCompany(e.target.value)} className={inputClass} />
         <input type="tel" placeholder={f.phone} value={phone} onChange={(e) => setPhone(e.target.value)} className={inputClass} />
-        <select value={type} onChange={(e) => setType(e.target.value)} className={selectClass}>
-          <option value="" disabled>{f.type}</option>
-          {typeOptions.map((o) => (<option key={o.key} value={o.key}>{o.label}</option>))}
-        </select>
-        <select value={budget} onChange={(e) => setBudget(e.target.value)} className={selectClass}>
-          <option value="" disabled>{f.budget}</option>
-          {budgetOptions.map((o) => (<option key={o.key} value={o.key}>{o.label}</option>))}
-        </select>
-        <select value={timeline} onChange={(e) => setTimeline(e.target.value)} className={selectClass}>
-          <option value="" disabled>{f.timeline}</option>
-          {timelineOptions.map((o) => (<option key={o.key} value={o.key}>{o.label}</option>))}
-        </select>
+        <Select value={type} onChange={setType} placeholder={f.type} options={typeOptions} />
+        <Select value={budget} onChange={setBudget} placeholder={f.budget} options={budgetOptions} />
+        <Select value={timeline} onChange={setTimeline} placeholder={f.timeline} options={timelineOptions} />
       </div>
 
-      <select value={source} onChange={(e) => setSource(e.target.value)} className={`${selectClass} mt-3`}>
-        <option value="" disabled>{f.source}</option>
-        {sourceOptions.map((o) => (<option key={o.key} value={o.key}>{o.label}</option>))}
-      </select>
+      <div className="mt-3">
+        <Select value={source} onChange={setSource} placeholder={f.source} options={sourceOptions} />
+      </div>
 
       <textarea placeholder={f.message} value={message} onChange={(e) => setMessage(e.target.value)} rows={4} className={`${inputClass} mt-3 resize-none`} />
 

@@ -75,9 +75,15 @@
       "type": "Project type",
       "typeOptions": {
         "app": "Mobile app",
-        "web": "Website",
-        "ai": "AI automation",
+        "web": "Website / Landing",
+        "ecommerce": "Online store",
         "system": "Management system",
+        "ai": "AI automation",
+        "chatbot": "Chatbot / AI assistant",
+        "integration": "Integrations (payments, WhatsApp…)",
+        "api": "API / Backend",
+        "consulting": "Consulting / Advisory",
+        "maintenance": "Maintenance / Support",
         "other": "Other"
       },
       "budget": "Estimated budget",
