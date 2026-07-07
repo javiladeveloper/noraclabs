@@ -23,6 +23,14 @@
   },
   "about": {
     "title": "Sobre mí",
+    "infoTitle": "Datos",
+    "labelLocation": "Ubicación",
+    "labelNationality": "Nacionalidad",
+    "labelLanguages": "Idiomas",
+    "labelAvailability": "Disponibilidad",
+    "labelPhone": "Teléfono",
+    "labelWhatsapp": "WhatsApp",
+    "labelEmail": "Correo",
     "body": "Soy ingeniero de software con más de 14 años de trayectoria (desde 2012), con foco en backend y experiencia sólida como fullstack e ingeniero de IA. Diseño arquitecturas escalables y llevo IA generativa del prototipo a producción: sistemas RAG, agentes LLM y pipelines NLP en Python, con obsesión por la fiabilidad, la precisión y el costo a escala. He entregado soluciones en fintech, salud y dominios regulados para clientes como Coca-Cola Andina, Naranja X y AUNA, y he fundado y desarrollado mis propios productos.",
     "skillsTitle": "Mapa de habilidades",
     "skillsHint": "Todo parte de los fundamentos de programación en el centro; desde ahí se ramifican mis líneas de carrera. Haz clic en una rama para enfocarla y pasa el cursor sobre cada tecnología para ver su detalle."

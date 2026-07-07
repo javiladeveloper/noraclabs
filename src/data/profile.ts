@@ -4,14 +4,29 @@ type Localized = Record<Locale, string>;
 
 export const profile = {
   name: "Jonathan Avila",
+  fullName: "Jonathan Joan Avila Huamolle",
   /** Shown in the hero as the role/title. */
   email: "noraclabspe@gmail.com",
   location: {
     es: "Tacna, Perú",
     en: "Tacna, Peru",
   } satisfies Localized,
+  nationality: {
+    es: "Peruano",
+    en: "Peruvian",
+  } satisfies Localized,
+  languages: {
+    es: "Español (nativo) · Inglés (profesional)",
+    en: "Spanish (native) · English (professional)",
+  } satisfies Localized,
+  availability: {
+    es: "Disponible para proyectos · Remoto",
+    en: "Available for projects · Remote",
+  } satisfies Localized,
   /** WhatsApp number in international format, digits only (for wa.me links). */
   whatsapp: "51986110558",
+  /** Personal phone for calls (shown as text). */
+  phone: "+51 940 202 780",
   /** Web3Forms access key — the contact form posts here so submissions arrive by email. */
   web3formsKey: "25250ef3-cb09-4fde-a437-2f39ec167f37",
   socials: {

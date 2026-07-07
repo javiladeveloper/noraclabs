@@ -127,9 +127,73 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
             <h2 className="text-sm font-semibold uppercase tracking-widest text-accent">
               {dict.about.title}
             </h2>
-            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted">
-              {dict.about.body}
-            </p>
+            <div className="mt-6 grid gap-8 md:grid-cols-[1.5fr_1fr]">
+              <p className="text-lg leading-relaxed text-muted">
+                {dict.about.body}
+              </p>
+              {/* Personal details card */}
+              <div className="rounded-2xl border border-border bg-card/50 p-6">
+                <p className="text-sm font-semibold text-foreground">
+                  {profile.fullName}
+                </p>
+                <dl className="mt-4 space-y-3 text-sm">
+                  {[
+                    { l: dict.about.labelLocation, v: profile.location[lang] },
+                    { l: dict.about.labelNationality, v: profile.nationality[lang] },
+                    { l: dict.about.labelLanguages, v: profile.languages[lang] },
+                    { l: dict.about.labelAvailability, v: profile.availability[lang] },
+                  ].map((row) => (
+                    <div key={row.l} className="flex flex-col">
+                      <dt className="text-xs uppercase tracking-wide text-muted/70">
+                        {row.l}
+                      </dt>
+                      <dd className="text-foreground">{row.v}</dd>
+                    </div>
+                  ))}
+                  <div className="flex flex-col">
+                    <dt className="text-xs uppercase tracking-wide text-muted/70">
+                      {dict.about.labelWhatsapp}
+                    </dt>
+                    <dd>
+                      <a
+                        href={`https://wa.me/${profile.whatsapp}`}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="text-accent hover:underline"
+                      >
+                        +51 986 110 558
+                      </a>
+                    </dd>
+                  </div>
+                  <div className="flex flex-col">
+                    <dt className="text-xs uppercase tracking-wide text-muted/70">
+                      {dict.about.labelPhone}
+                    </dt>
+                    <dd>
+                      <a
+                        href={`tel:${profile.phone.replace(/\s/g, "")}`}
+                        className="text-foreground hover:text-accent"
+                      >
+                        {profile.phone}
+                      </a>
+                    </dd>
+                  </div>
+                  <div className="flex flex-col">
+                    <dt className="text-xs uppercase tracking-wide text-muted/70">
+                      {dict.about.labelEmail}
+                    </dt>
+                    <dd>
+                      <a
+                        href={`mailto:${profile.email}`}
+                        className="text-foreground hover:text-accent"
+                      >
+                        {profile.email}
+                      </a>
+                    </dd>
+                  </div>
+                </dl>
+              </div>
+            </div>
           </Reveal>
           <Reveal delay={80}>
             <h3 className="mt-10 text-sm font-semibold text-foreground">

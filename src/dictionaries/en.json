@@ -23,6 +23,14 @@
   },
   "about": {
     "title": "About me",
+    "infoTitle": "Details",
+    "labelLocation": "Location",
+    "labelNationality": "Nationality",
+    "labelLanguages": "Languages",
+    "labelAvailability": "Availability",
+    "labelPhone": "Phone",
+    "labelWhatsapp": "WhatsApp",
+    "labelEmail": "Email",
     "body": "I'm a software engineer with 14+ years of experience (since 2012), focused on backend and with strong range across fullstack and AI engineering. I design scalable architectures and take generative AI from prototype to production: RAG systems, LLM agents and NLP pipelines in Python, obsessed with reliability, accuracy and cost at scale. I've delivered solutions in fintech, healthcare and regulated domains for clients like Coca-Cola Andina, Naranja X and AUNA, and I've founded and built my own products.",
     "skillsTitle": "Skill map",
     "skillsHint": "Everything starts from programming fundamentals at the center; from there my career branches fan out. Click a branch to focus it and hover each technology to see its detail."
