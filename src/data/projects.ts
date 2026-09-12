@@ -20,25 +20,108 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    slug: "fitcontrol",
-    name: "FitControl",
+    slug: "fitcore",
+    name: "FitCore",
     year: "2025",
     tagline: {
       es: "El sistema operativo para gimnasios.",
       en: "The operating system for gyms.",
     },
     description: {
-      es: "Plataforma todo-en-uno para gimnasios, academias y entrenadores: control de accesos, cobros, gestión de socios y su propia página web para captar clientes.",
-      en: "All-in-one platform for gyms, studios and personal trainers: access control, payments, member management and their own website to attract clients.",
+      es: "Gestión completa del gimnasio: socios, membresías y cobros con MercadoPago, app para socios (Android/iOS) con rutinas de más de 1,300 ejercicios, y Finny, un vendedor con IA que atiende el WhatsApp del negocio 24/7.",
+      en: "Complete gym management: members, memberships and MercadoPago payments, a member app (Android/iOS) with a 1,300+ exercise routine library, and Finny, an AI salesperson answering the business WhatsApp 24/7.",
     },
     role: {
       es: "Fundador y desarrollador",
       en: "Founder & developer",
     },
-    tech: ["Next.js", "TypeScript", "Node.js", "Tailwind CSS"],
+    tech: ["Next.js", "TypeScript", "AI", "MercadoPago"],
     url: "https://fitcorecenter.com/",
-    icon: "/icon-fitcontrol.png",
+    icon: "/icon-fitcore.png",
     accent: "#FF6B35",
+  },
+  {
+    slug: "sania",
+    name: "Sania",
+    year: "2024",
+    tagline: {
+      es: "Gestión clínica con asistente IA por WhatsApp.",
+      en: "Clinic management with an AI WhatsApp assistant.",
+    },
+    description: {
+      es: "Ordena la clínica o consultorio: agenda, fichas de tratamiento, caja y comisiones automáticas, con app Android para el equipo, portal del paciente y Sani, un agente con IA que agenda citas reales por WhatsApp.",
+      en: "Runs the clinic end to end: scheduling, treatment records, cash flow and automatic commissions, with an Android app for staff, a patient portal and Sani, an AI agent that books real appointments over WhatsApp.",
+    },
+    role: {
+      es: "Fundador y desarrollador principal",
+      en: "Founder & lead developer",
+    },
+    tech: ["Kotlin Multiplatform", "Compose", "AI", "Firebase"],
+    url: "https://www.saniape.com/",
+    icon: "/icon-sania.png",
+    accent: "#14b8a6",
+  },
+  {
+    slug: "leadai",
+    name: "LeadAI",
+    year: "2026",
+    tagline: {
+      es: "Tu WhatsApp atendido por IA, 24/7.",
+      en: "Your WhatsApp answered by AI, 24/7.",
+    },
+    description: {
+      es: "Toma pedidos completos de restaurantes por WhatsApp —valida pagos Yape/Plin leyendo el comprobante con IA—, ofrece carta digital con link propio y califica interesados para negocios de servicios, pasando a un humano cuando hace falta.",
+      en: "Takes complete restaurant orders over WhatsApp — validating Yape/Plin payments by reading receipts with AI — offers a digital menu with its own link, and qualifies leads for service businesses, handing off to a human when needed.",
+    },
+    role: {
+      es: "Fundador y desarrollador",
+      en: "Founder & developer",
+    },
+    tech: ["AI", "WhatsApp API", "TypeScript", "Next.js"],
+    url: "https://leadai-pe.com/",
+    icon: "/icon-leadai.svg",
+    accent: "#22c55e",
+  },
+  {
+    slug: "facnow",
+    name: "FacNow",
+    year: "2026",
+    tagline: {
+      es: "Boletas y facturas SUNAT sin complicarte.",
+      en: "Peruvian e-invoicing without the hassle.",
+    },
+    description: {
+      es: "Emisión de boletas, facturas y notas de crédito ante SUNAT desde el navegador, con autocompletado por RUC/DNI, catálogo de clientes y productos, historial con XML/CDR/PDF y ayuda para obtener el certificado digital.",
+      en: "Issues receipts, invoices and credit notes to SUNAT (Peru's tax authority) from the browser, with RUC/DNI autocomplete, client and product catalogs, full history with XML/CDR/PDF and guided digital certificate setup.",
+    },
+    role: {
+      es: "Fundador y desarrollador",
+      en: "Founder & developer",
+    },
+    tech: ["TypeScript", "Next.js", "Node.js", "SUNAT"],
+    icon: "/icon-facnow.svg",
+    accent: "#3b82f6",
+  },
+  {
+    slug: "light-drive",
+    name: "Light Drive",
+    year: "2026",
+    tagline: {
+      es: "Pide tu moto y pon tú el precio, en Tacna.",
+      en: "Hail a moto and name your price, in Tacna.",
+    },
+    description: {
+      es: "El pasajero propone el precio y los motorizados ofertan: personas, delivery y encomiendas en una sola app (Android/iOS), con mapa en vivo, chat interno y motorizados verificados por brevete y placa.",
+      en: "Passengers propose the fare and riders bid: rides, delivery and parcels in a single app (Android/iOS), with live map tracking, in-app chat and riders verified by license and plate.",
+    },
+    role: {
+      es: "Fundador y desarrollador",
+      en: "Founder & developer",
+    },
+    tech: ["Android", "iOS", "Google Maps", "Realtime"],
+    url: "https://play.google.com/store/apps/details?id=pe.leadai.rider",
+    icon: "/icon-lightdrive.svg",
+    accent: "#eab308",
   },
   {
     slug: "ciudadano-alerta",
@@ -60,27 +143,6 @@ export const projects: Project[] = [
     url: "https://www.ciudadanoalerta.com/",
     icon: "/icon-ciudadano-alerta.png",
     accent: "#ef4444",
-  },
-  {
-    slug: "sania",
-    name: "Sania",
-    year: "2024",
-    tagline: {
-      es: "Gestión clínica potenciada con IA.",
-      en: "AI-powered clinical management.",
-    },
-    description: {
-      es: "Aplicación multiplataforma para clínicas que digitaliza la gestión de pacientes, personal y consultas, con asistencia de inteligencia artificial para agilizar la operación diaria.",
-      en: "A multiplatform application for clinics that digitizes patient, staff and appointment management, with AI assistance to streamline day-to-day operations.",
-    },
-    role: {
-      es: "Fundador y desarrollador principal",
-      en: "Founder & lead developer",
-    },
-    tech: ["Kotlin Multiplatform", "Compose", "AI", "Firebase"],
-    url: "https://www.saniape.com/",
-    icon: "/icon-sania.png",
-    accent: "#14b8a6",
   },
   {
     slug: "helpet",
