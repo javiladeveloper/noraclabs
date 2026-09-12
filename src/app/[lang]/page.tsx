@@ -47,19 +47,28 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
 
           <div className="grid w-full items-center gap-12 md:grid-cols-[1.4fr_1fr]">
             <div>
-              <p className="text-sm font-medium text-accent">
+              <p className="hero-rise text-sm font-medium text-accent">
                 {dict.hero.greeting}{" "}
                 <span className="text-foreground">{dict.hero.name}</span>
                 {" · "}
                 {dict.hero.role}
               </p>
-              <h1 className="mt-3 text-4xl font-bold tracking-tight sm:text-5xl">
+              <h1
+                className="hero-rise mt-3 text-4xl font-bold tracking-tight sm:text-5xl"
+                style={{ ["--rise-delay" as string]: "90ms" }}
+              >
                 {dict.hero.pitch}
               </h1>
-              <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted">
+              <p
+                className="hero-rise mt-6 max-w-xl text-lg leading-relaxed text-muted"
+                style={{ ["--rise-delay" as string]: "180ms" }}
+              >
                 {dict.hero.tagline}
               </p>
-              <div className="mt-8 flex flex-wrap gap-4">
+              <div
+                className="hero-rise mt-8 flex flex-wrap gap-4"
+                style={{ ["--rise-delay" as string]: "270ms" }}
+              >
                 <a
                   href={`#projects`}
                   className="rounded-full bg-accent px-6 py-3 text-sm font-semibold text-white transition-opacity hover:opacity-90"
@@ -85,21 +94,23 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
               </div>
             </div>
 
-            <div className="relative mx-auto w-full max-w-xs md:max-w-none">
+            <div className="hero-portrait relative mx-auto w-full max-w-xs md:max-w-none">
               <div
                 className="absolute -inset-4 rounded-full opacity-40 blur-3xl"
                 style={{ background: "var(--accent)" }}
                 aria-hidden
               />
-              <div className="relative aspect-square overflow-hidden rounded-2xl border border-border">
-                <Image
-                  src="/portrait.png"
-                  alt={dict.hero.name}
-                  fill
-                  priority
-                  sizes="(max-width: 768px) 20rem, 22rem"
-                  className="object-cover"
-                />
+              <div className="relative rounded-3xl bg-gradient-to-br from-accent via-violet-500 to-fuchsia-500 p-[3px] shadow-[0_24px_70px_-24px_var(--accent)]">
+                <div className="relative aspect-square overflow-hidden rounded-[calc(1.5rem-3px)]">
+                  <Image
+                    src="/portrait.png"
+                    alt={dict.hero.name}
+                    fill
+                    priority
+                    sizes="(max-width: 768px) 20rem, 22rem"
+                    className="object-cover"
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -454,17 +465,20 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
 
       <footer className="border-t border-border py-10">
         <div className="mx-auto flex max-w-5xl flex-col items-center gap-4 px-6 text-sm text-muted sm:flex-row sm:justify-between">
-          <div className="flex items-center gap-2.5">
-            <Image
-              src="/logo-norac.png"
-              alt="Norac Labs"
-              width={24}
-              height={24}
-              className="h-6 w-6"
-            />
-            <p>
-              © 2026 Norac Labs. {dict.footer.rights}
-            </p>
+          <div className="flex flex-col items-center gap-1.5 sm:items-start">
+            <div className="flex items-center gap-2.5">
+              <Image
+                src="/logo-norac.png"
+                alt="Norac Labs"
+                width={24}
+                height={24}
+                className="h-6 w-6"
+              />
+              <p>
+                © 2026 Norac Labs. {dict.footer.rights}
+              </p>
+            </div>
+            <p className="text-xs">NORAC LABS E.I.R.L. · RUC 20616346548</p>
           </div>
           <div className="flex gap-4">
             {profile.socials.github && (
