@@ -28,7 +28,7 @@ export function ProjectCard({
             alt=""
             width={44}
             height={44}
-            className="h-11 w-11 rounded-xl border border-border"
+            className="h-11 w-11 rounded-xl border border-border object-contain"
           />
           <h3 className="text-lg font-semibold">{project.name}</h3>
         </div>

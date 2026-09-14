@@ -80,7 +80,7 @@ export const projects: Project[] = [
     tech: ["AI", "WhatsApp API", "TypeScript", "Next.js"],
     url: "https://leadai-pe.com/",
     icon: "/icon-leadai.svg",
-    accent: "#22c55e",
+    accent: "#0FB68B",
   },
   {
     slug: "wappido",
@@ -100,7 +100,7 @@ export const projects: Project[] = [
     },
     tech: ["Android", "WhatsApp API", "Next.js", "AI"],
     url: "https://wappido.com/",
-    icon: "/icon-wappido.svg",
+    icon: "/icon-wappido.png",
     accent: "#E8503A",
   },
   {
@@ -120,8 +120,8 @@ export const projects: Project[] = [
       en: "Founder & developer",
     },
     tech: ["Kotlin Multiplatform", "Compose", "Android"],
-    icon: "/icon-niami.svg",
-    accent: "#f43f5e",
+    icon: "/icon-niami.png",
+    accent: "#ea580c",
   },
   {
     slug: "facnow",
@@ -140,8 +140,8 @@ export const projects: Project[] = [
       en: "Founder & developer",
     },
     tech: ["TypeScript", "Next.js", "Node.js", "SUNAT"],
-    icon: "/icon-facnow.svg",
-    accent: "#3b82f6",
+    icon: "/icon-facnow.png",
+    accent: "#8b5cf6",
   },
   {
     slug: "light-drive",
@@ -161,7 +161,7 @@ export const projects: Project[] = [
     },
     tech: ["Android", "iOS", "Google Maps", "Realtime"],
     url: "https://play.google.com/store/apps/details?id=pe.leadai.rider",
-    icon: "/icon-lightdrive.svg",
+    icon: "/icon-lightdrive.png",
     accent: "#eab308",
   },
   {

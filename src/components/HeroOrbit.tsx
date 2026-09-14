@@ -60,6 +60,7 @@ export function HeroOrbit({ products }: { products: OrbitProduct[] }) {
     wrapRefs.current.forEach((el) => {
       if (el) el.style.transform = "";
     });
+    setSelected(null);
   };
 
   const toggle = (i: number) => setSelected((cur) => (cur === i ? null : i));
@@ -80,7 +81,7 @@ export function HeroOrbit({ products }: { products: OrbitProduct[] }) {
         alt=""
         width={44}
         height={44}
-        className="h-11 w-11 rounded-xl border border-border"
+        className="h-11 w-11 rounded-xl border border-border object-contain"
       />
       <div className="min-w-0 flex-1 leading-tight">
         <p className="text-sm font-semibold">{p.name}</p>
@@ -143,6 +144,8 @@ export function HeroOrbit({ products }: { products: OrbitProduct[] }) {
                   <button
                     type="button"
                     onClick={() => toggle(i)}
+                    onMouseEnter={() => setSelected(i)}
+                    onFocus={() => setSelected(i)}
                     aria-expanded={selected === i}
                     className="flex cursor-pointer items-center gap-2.5 rounded-xl border border-border bg-card/80 px-3 py-2 backdrop-blur transition-colors hover:border-[var(--glow)]"
                     style={{
@@ -156,7 +159,7 @@ export function HeroOrbit({ products }: { products: OrbitProduct[] }) {
                       alt=""
                       width={30}
                       height={30}
-                      className="h-7 w-7 rounded-lg border border-border"
+                      className="h-7 w-7 rounded-lg border border-border object-contain"
                     />
                     <span className="text-left leading-tight">
                       <span className="block text-xs font-semibold text-foreground">
@@ -204,7 +207,7 @@ export function HeroOrbit({ products }: { products: OrbitProduct[] }) {
                 alt=""
                 width={24}
                 height={24}
-                className="h-6 w-6 rounded-full border border-border"
+                className="h-6 w-6 rounded-full border border-border object-contain"
               />
               <span className="text-xs font-semibold">{p.name}</span>
             </button>
