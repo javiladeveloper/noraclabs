@@ -2,6 +2,15 @@
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
 
+const hiddenTransforms = {
+  up: "translateY(24px)",
+  left: "translateX(-36px)",
+  right: "translateX(36px)",
+  zoom: "scale(0.93)",
+} as const;
+
+export type RevealDirection = keyof typeof hiddenTransforms;
+
 /**
  * Fades + slides its children in when they scroll into view.
  * Respects prefers-reduced-motion (renders immediately, no transform).
@@ -9,32 +18,30 @@ import { useEffect, useRef, useState, type ReactNode } from "react";
 export function Reveal({
   children,
   delay = 0,
+  direction = "up",
   className = "",
 }: {
   children: ReactNode;
   delay?: number;
+  direction?: RevealDirection;
   className?: string;
 }) {
   const ref = useRef<HTMLDivElement>(null);
-  const [shown, setShown] = useState(false);
+  const [state, setState] = useState({ shown: false, reduce: false });
 
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
 
-    const reduce = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-    if (reduce) {
-      setShown(true);
-      return;
-    }
-
     const io = new IntersectionObserver(
       (entries) => {
         for (const e of entries) {
           if (e.isIntersecting) {
-            setShown(true);
+            setState({
+              shown: true,
+              reduce: window.matchMedia("(prefers-reduced-motion: reduce)")
+                .matches,
+            });
             io.disconnect();
           }
         }
@@ -50,9 +57,11 @@ export function Reveal({
       ref={ref}
       className={className}
       style={{
-        opacity: shown ? 1 : 0,
-        transform: shown ? "none" : "translateY(24px)",
-        transition: `opacity 0.7s cubic-bezier(0.22,1,0.36,1) ${delay}ms, transform 0.7s cubic-bezier(0.22,1,0.36,1) ${delay}ms`,
+        opacity: state.shown ? 1 : 0,
+        transform: state.shown ? "none" : hiddenTransforms[direction],
+        transition: state.reduce
+          ? "none"
+          : `opacity 0.7s cubic-bezier(0.22,1,0.36,1) ${delay}ms, transform 0.7s cubic-bezier(0.22,1,0.36,1) ${delay}ms`,
         willChange: "opacity, transform",
       }}
     >

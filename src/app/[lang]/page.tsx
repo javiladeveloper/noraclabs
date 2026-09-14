@@ -7,6 +7,9 @@ import { metrics, services } from "@/data/highlights";
 import { steps, benefits, techBadges } from "@/data/content";
 import { Navbar } from "@/components/Navbar";
 import { ProjectCard } from "@/components/ProjectCard";
+import { ScrollProgress } from "@/components/ScrollProgress";
+import { TiltCard } from "@/components/TiltCard";
+import { HeroOrbit } from "@/components/HeroOrbit";
 import { SkillGraph } from "@/components/SkillGraph";
 import { Reveal } from "@/components/Reveal";
 import { ServiceIcon } from "@/components/ServiceIcon";
@@ -23,14 +26,69 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
 
   const resume = profile.resume[lang];
 
+  const orbitInfo: Record<
+    string,
+    { label: Record<typeof lang, string>; stat: Record<typeof lang, string> }
+  > = {
+    fitcore: {
+      label: { es: "Gimnasios", en: "Gyms" },
+      stat: { es: "En producción · Perú", en: "In production · Peru" },
+    },
+    sania: {
+      label: { es: "Clínicas", en: "Clinics" },
+      stat: { es: "En producción · Perú", en: "In production · Peru" },
+    },
+    leadai: {
+      label: { es: "Ventas por WhatsApp", en: "WhatsApp sales" },
+      stat: { es: "En producción · Perú", en: "In production · Peru" },
+    },
+    wappido: {
+      label: { es: "Restaurantes", en: "Restaurants" },
+      stat: { es: "En producción · Perú", en: "In production · Peru" },
+    },
+    "niami-niami": {
+      label: { es: "App de comensales", en: "Diner app" },
+      stat: { es: "Android · Perú", en: "Android · Peru" },
+    },
+    facnow: {
+      label: { es: "Facturación SUNAT", en: "e-Invoicing" },
+      stat: { es: "En producción · Perú", en: "In production · Peru" },
+    },
+    "light-drive": {
+      label: { es: "Movilidad", en: "Mobility" },
+      stat: { es: "Android + iOS · Tacna", en: "Android + iOS · Tacna" },
+    },
+    "ciudadano-alerta": {
+      label: { es: "Seguridad ciudadana", en: "Public safety" },
+      stat: { es: "Desde 2024", en: "Since 2024" },
+    },
+    helpet: {
+      label: { es: "Mascotas", en: "Pets" },
+      stat: { es: "Desde 2023", en: "Since 2023" },
+    },
+  };
+  const orbitProducts = projects.slice(0, 9).map((p) => ({
+    slug: p.slug,
+    name: p.name,
+    icon: p.icon,
+    accent: p.accent,
+    label: orbitInfo[p.slug]?.label[lang] ?? "",
+    stat: orbitInfo[p.slug]?.stat[lang] ?? p.year,
+    cta: lang === "es" ? "Ver proyecto" : "View project",
+  }));
+
+  const pitchWords = dict.hero.pitch.split(" ");
+  const afterPitch = 140 + pitchWords.length * 80;
+
   return (
     <>
+      <ScrollProgress />
       <Navbar lang={lang} dict={dict} />
 
       <main className="mx-auto max-w-5xl px-6">
         {/* Hero */}
         <section className="relative flex min-h-[86vh] items-center py-20">
-          {/* Subtle neural-network backdrop */}
+          {/* Subtle neural-network backdrop + drifting gradient orbs */}
           <div
             className="pointer-events-none absolute inset-0 -z-10 overflow-hidden"
             aria-hidden
@@ -43,9 +101,17 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
               sizes="100vw"
               className="object-cover opacity-40 [mask-image:radial-gradient(ellipse_at_center,black,transparent_78%)]"
             />
+            <div
+              className="orb orb-a -left-24 top-16 h-96 w-96 opacity-35"
+              style={{ background: "var(--accent)" }}
+            />
+            <div
+              className="orb orb-b -right-16 bottom-8 h-80 w-80 opacity-25"
+              style={{ background: "#d946ef" }}
+            />
           </div>
 
-          <div className="grid w-full items-center gap-12 md:grid-cols-[1.4fr_1fr]">
+          <div className="grid w-full items-center gap-12 md:grid-cols-[1.3fr_1fr]">
             <div>
               <p className="hero-rise text-sm font-medium text-accent">
                 {dict.hero.greeting}{" "}
@@ -53,25 +119,31 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
                 {" · "}
                 {dict.hero.role}
               </p>
-              <h1
-                className="hero-rise mt-3 text-4xl font-bold tracking-tight sm:text-5xl"
-                style={{ ["--rise-delay" as string]: "90ms" }}
-              >
-                {dict.hero.pitch}
+              <h1 className="mt-3 text-4xl font-bold tracking-tight sm:text-6xl">
+                {pitchWords.map((w, i) => (
+                  <span
+                    key={`${w}-${i}`}
+                    className="word-rise"
+                    style={{ ["--word-delay" as string]: `${140 + i * 80}ms` }}
+                  >
+                    {w}
+                    {i < pitchWords.length - 1 ? " " : ""}
+                  </span>
+                ))}
               </h1>
               <p
                 className="hero-rise mt-6 max-w-xl text-lg leading-relaxed text-muted"
-                style={{ ["--rise-delay" as string]: "180ms" }}
+                style={{ ["--rise-delay" as string]: `${afterPitch}ms` }}
               >
                 {dict.hero.tagline}
               </p>
               <div
                 className="hero-rise mt-8 flex flex-wrap gap-4"
-                style={{ ["--rise-delay" as string]: "270ms" }}
+                style={{ ["--rise-delay" as string]: `${afterPitch + 120}ms` }}
               >
                 <a
                   href={`#projects`}
-                  className="rounded-full bg-accent px-6 py-3 text-sm font-semibold text-white transition-opacity hover:opacity-90"
+                  className="btn-shine rounded-full bg-accent px-6 py-3 text-sm font-semibold text-white transition-transform hover:scale-[1.04]"
                 >
                   {dict.hero.ctaProjects}
                 </a>
@@ -94,25 +166,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
               </div>
             </div>
 
-            <div className="hero-portrait relative mx-auto w-full max-w-xs md:max-w-none">
-              <div
-                className="absolute -inset-4 rounded-full opacity-40 blur-3xl"
-                style={{ background: "var(--accent)" }}
-                aria-hidden
-              />
-              <div className="relative rounded-3xl bg-gradient-to-br from-accent via-violet-500 to-fuchsia-500 p-[3px] shadow-[0_24px_70px_-24px_var(--accent)]">
-                <div className="relative aspect-square overflow-hidden rounded-[calc(1.5rem-3px)]">
-                  <Image
-                    src="/portrait.png"
-                    alt={dict.hero.name}
-                    fill
-                    priority
-                    sizes="(max-width: 768px) 20rem, 22rem"
-                    className="object-cover"
-                  />
-                </div>
-              </div>
-            </div>
+            <HeroOrbit products={orbitProducts} />
           </div>
         </section>
 
@@ -144,7 +198,18 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
               </p>
               {/* Personal details card */}
               <div className="rounded-2xl border border-border bg-card/50 p-6">
-                <p className="text-sm font-semibold text-foreground">
+                <div className="mx-auto mb-5 w-36 rounded-2xl bg-gradient-to-br from-accent via-violet-500 to-fuchsia-500 p-[2px] shadow-[0_16px_50px_-18px_var(--accent)]">
+                  <div className="relative aspect-square overflow-hidden rounded-[calc(1rem-2px)]">
+                    <Image
+                      src="/portrait.png"
+                      alt={profile.fullName}
+                      fill
+                      sizes="9rem"
+                      className="object-cover"
+                    />
+                  </div>
+                </div>
+                <p className="text-center text-sm font-semibold text-foreground">
                   {profile.fullName}
                 </p>
                 <dl className="mt-4 space-y-3 text-sm">
@@ -234,7 +299,11 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
           </Reveal>
           <div className="mt-10 grid gap-6 sm:grid-cols-2">
             {services.map((s, i) => (
-              <Reveal key={s.icon} delay={i * 70}>
+              <Reveal
+                key={s.icon}
+                delay={i * 70}
+                direction={i % 2 === 0 ? "left" : "right"}
+              >
                 <div className="group flex h-full gap-4 rounded-2xl border border-border bg-card/50 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-accent/60 hover:shadow-[0_8px_30px_-10px_var(--accent)]">
                   <ServiceIcon name={s.icon} />
                   <div>
@@ -261,7 +330,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
           </Reveal>
           <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {benefits.map((b, i) => (
-              <Reveal key={b.icon} delay={i * 70}>
+              <Reveal key={b.icon} delay={i * 70} direction="zoom">
                 <div className="group h-full rounded-2xl border border-border bg-card/50 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-accent/60 hover:shadow-[0_8px_30px_-10px_var(--accent)]">
                   <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-border text-accent transition-colors group-hover:border-accent/60">
                     <Icon name={b.icon} />
@@ -318,7 +387,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
           </Reveal>
           <div className="mt-10 ml-2 border-l border-border">
             {experience.map((item, i) => (
-              <Reveal key={item.company} delay={i * 60}>
+              <Reveal key={item.company} delay={i * 60} direction="left">
                 <div className="relative pb-10 pl-8 last:pb-0">
                   {/* timeline dot */}
                   <span
@@ -359,8 +428,15 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
           </Reveal>
           <div className="mt-10 grid gap-6 sm:grid-cols-2">
             {projects.map((project, i) => (
-              <Reveal key={project.slug} delay={i * 70}>
-                <ProjectCard project={project} lang={lang} dict={dict} />
+              <Reveal
+                key={project.slug}
+                delay={i * 70}
+                direction="zoom"
+                className="h-full"
+              >
+                <TiltCard>
+                  <ProjectCard project={project} lang={lang} dict={dict} />
+                </TiltCard>
               </Reveal>
             ))}
           </div>
@@ -372,15 +448,18 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
             <p className="text-center text-xs font-semibold uppercase tracking-widest text-muted">
               {dict.tech.title}
             </p>
-            <div className="mt-6 flex flex-wrap items-center justify-center gap-x-8 gap-y-3">
-              {techBadges.map((t) => (
-                <span
-                  key={t}
-                  className="text-sm font-medium text-muted/80 transition-colors hover:text-foreground"
-                >
-                  {t}
-                </span>
-              ))}
+            <div className="marquee-mask mt-6 overflow-hidden">
+              <div className="marquee-track items-center">
+                {[...techBadges, ...techBadges].map((t, i) => (
+                  <span
+                    key={`${t}-${i}`}
+                    className="mr-14 whitespace-nowrap text-base font-medium text-muted/80"
+                    aria-hidden={i >= techBadges.length}
+                  >
+                    {t}
+                  </span>
+                ))}
+              </div>
             </div>
           </Reveal>
         </section>
@@ -405,7 +484,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
 
         {/* CTA banner */}
         <section className="py-16">
-          <Reveal>
+          <Reveal direction="zoom">
             <div className="relative overflow-hidden rounded-3xl border border-accent/30 bg-accent/10 px-8 py-14 text-center">
               <div
                 className="pointer-events-none absolute -inset-px opacity-60 blur-2xl"

@@ -83,6 +83,47 @@ export const projects: Project[] = [
     accent: "#22c55e",
   },
   {
+    slug: "wappido",
+    name: "Wappido",
+    year: "2026",
+    tagline: {
+      es: "Pedidos por WhatsApp para tu restaurante.",
+      en: "WhatsApp ordering for your restaurant.",
+    },
+    description: {
+      es: "App y panel para que un restaurante reciba pedidos por WhatsApp con un bot, cobre por Yape/Plin y maneje su cocina, carta, reservas y delivery — el cliente pide desde la carta web sin descargar nada.",
+      en: "App and dashboard for restaurants to take WhatsApp orders with a bot, charge via Yape/Plin and run their kitchen, menu, reservations and delivery — customers order from the web menu with nothing to install.",
+    },
+    role: {
+      es: "Fundador y desarrollador",
+      en: "Founder & developer",
+    },
+    tech: ["Android", "WhatsApp API", "Next.js", "AI"],
+    url: "https://wappido.com/",
+    icon: "/icon-wappido.svg",
+    accent: "#E8503A",
+  },
+  {
+    slug: "niami-niami",
+    name: "Niami Niami",
+    year: "2026",
+    tagline: {
+      es: "La app para pedir de tus restaurantes favoritos.",
+      en: "The app for ordering from your favorite restaurants.",
+    },
+    description: {
+      es: "App de comensales conectada al ecosistema de pedidos: exploras la carta del restaurante, armas tu carrito y pagas desde el celular, con tu pedido cayendo directo a la cocina.",
+      en: "A diner app connected to the ordering ecosystem: browse the restaurant's menu, build your cart and pay from your phone, with the order landing straight in the kitchen.",
+    },
+    role: {
+      es: "Fundador y desarrollador",
+      en: "Founder & developer",
+    },
+    tech: ["Kotlin Multiplatform", "Compose", "Android"],
+    icon: "/icon-niami.svg",
+    accent: "#f43f5e",
+  },
+  {
     slug: "facnow",
     name: "FacNow",
     year: "2026",

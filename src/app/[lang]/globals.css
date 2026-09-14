@@ -33,22 +33,13 @@ body {
   background: color-mix(in srgb, var(--accent) 40%, transparent);
 }
 
+/* --- Motion system ------------------------------------------------------ */
+
 /* Hero entrance — one orchestrated sequence on page load */
 @keyframes hero-rise {
   from {
     opacity: 0;
     transform: translateY(22px);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-
-@keyframes hero-portrait {
-  from {
-    opacity: 0;
-    transform: scale(0.96) translateY(12px);
   }
   to {
     opacity: 1;
@@ -62,9 +53,139 @@ body {
   animation-delay: var(--rise-delay, 0ms);
 }
 
-.hero-portrait {
+/* Headline words materialize one by one */
+@keyframes word-rise {
+  from {
+    opacity: 0;
+    transform: translateY(0.55em);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+
+.word-rise {
+  display: inline-block;
   opacity: 0;
-  animation: hero-portrait 1s cubic-bezier(0.22, 1, 0.36, 1) 250ms forwards;
+  animation: word-rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: var(--word-delay, 0ms);
+}
+
+/* Ambient gradient orbs drifting behind the hero */
+@keyframes orb-drift-a {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(60px, -40px) scale(1.12);
+  }
+}
+
+@keyframes orb-drift-b {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1.08);
+  }
+  50% {
+    transform: translate(-50px, 45px) scale(0.94);
+  }
+}
+
+.orb {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(90px);
+  pointer-events: none;
+}
+
+.orb-a {
+  animation: orb-drift-a 14s ease-in-out infinite;
+}
+
+.orb-b {
+  animation: orb-drift-b 18s ease-in-out infinite;
+}
+
+/* Product cards idle float (outer layer handles mouse parallax) */
+@keyframes card-float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(var(--tilt, 0deg));
+  }
+  50% {
+    transform: translateY(-12px) rotate(var(--tilt, 0deg));
+  }
+}
+
+.float-card {
+  animation: card-float var(--float-dur, 7s) ease-in-out
+    var(--float-delay, 0s) infinite;
+}
+
+/* Infinite tech marquee (content duplicated once → -50% loops seamlessly) */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee var(--marquee-dur, 28s) linear infinite;
+}
+
+.marquee-mask {
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 12%,
+    black 88%,
+    transparent
+  );
+}
+
+/* Shine sweep on primary CTAs */
+@keyframes shine-sweep {
+  from {
+    transform: translateX(-160%) skewX(-20deg);
+  }
+  to {
+    transform: translateX(300%) skewX(-20deg);
+  }
+}
+
+.btn-shine {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-shine::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 45%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.28),
+    transparent
+  );
+  transform: translateX(-160%) skewX(-20deg);
+  pointer-events: none;
+}
+
+.btn-shine:hover::after {
+  animation: shine-sweep 0.8s ease;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -72,8 +193,19 @@ body {
     scroll-behavior: auto;
   }
   .hero-rise,
-  .hero-portrait {
+  .word-rise {
     animation: none;
     opacity: 1;
+    transform: none;
+    filter: none;
+  }
+  .orb-a,
+  .orb-b,
+  .float-card,
+  .marquee-track {
+    animation: none;
+  }
+  .btn-shine::after {
+    display: none;
   }
 }
