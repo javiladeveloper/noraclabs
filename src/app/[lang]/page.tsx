@@ -85,12 +85,12 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
       <ScrollProgress />
       <Navbar lang={lang} dict={dict} />
 
-      <main className="mx-auto max-w-5xl px-6">
+      <main className="mx-auto max-w-6xl px-6 sm:px-8">
         {/* Hero */}
         <section className="relative flex min-h-[86vh] items-center py-20">
-          {/* Subtle neural-network backdrop + drifting gradient orbs */}
+          {/* Full-bleed neural-network backdrop + drifting gradient orbs */}
           <div
-            className="pointer-events-none absolute inset-0 -z-10 overflow-hidden"
+            className="full-bleed pointer-events-none absolute inset-y-0 -z-10 overflow-hidden"
             aria-hidden
           >
             <Image
@@ -99,14 +99,14 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
               fill
               priority
               sizes="100vw"
-              className="object-cover opacity-40 [mask-image:radial-gradient(ellipse_at_center,black,transparent_78%)]"
+              className="object-cover opacity-40 [mask-image:radial-gradient(ellipse_at_center,black,transparent_72%)]"
             />
             <div
-              className="orb orb-a -left-24 top-16 h-96 w-96 opacity-35"
+              className="orb orb-a left-[8%] top-16 h-96 w-96 opacity-35"
               style={{ background: "var(--accent)" }}
             />
             <div
-              className="orb orb-b -right-16 bottom-8 h-80 w-80 opacity-25"
+              className="orb orb-b right-[6%] bottom-8 h-80 w-80 opacity-25"
               style={{ background: "#d946ef" }}
             />
           </div>
@@ -543,7 +543,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
       </main>
 
       <footer className="border-t border-border py-10">
-        <div className="mx-auto flex max-w-5xl flex-col items-center gap-4 px-6 text-sm text-muted sm:flex-row sm:justify-between">
+        <div className="mx-auto flex max-w-6xl flex-col items-center gap-4 px-6 text-sm text-muted sm:flex-row sm:justify-between sm:px-8">
           <div className="flex flex-col items-center gap-1.5 sm:items-start">
             <div className="flex items-center gap-2.5">
               <Image

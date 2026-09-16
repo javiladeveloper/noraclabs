@@ -33,6 +33,22 @@ body {
   background: color-mix(in srgb, var(--accent) 40%, transparent);
 }
 
+/* Escapes a centered max-width container to span the full page width.
+   `100vw` includes the scrollbar, so the 8-17px overhang is clipped by
+   body's overflow-x rather than turning into horizontal scroll. */
+html,
+body {
+  overflow-x: clip;
+}
+
+.full-bleed {
+  left: 50%;
+  right: auto;
+  width: 100vw;
+  max-width: 100vw;
+  transform: translateX(-50%);
+}
+
 /* --- Motion system ------------------------------------------------------ */
 
 /* Hero entrance — one orchestrated sequence on page load */
