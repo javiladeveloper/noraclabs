@@ -35,7 +35,7 @@ export function Navbar({
           />
           Norac Labs
         </Link>
-        <div className="hidden items-center gap-6 text-sm text-muted md:flex">
+        <div className="hidden items-center gap-5 text-sm text-muted lg:flex xl:gap-6">
           {links.map((link) => (
             <a
               key={link.href}

@@ -111,7 +111,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
             />
           </div>
 
-          <div className="grid w-full items-center gap-12 md:grid-cols-[1.3fr_1fr]">
+          <div className="grid w-full items-center gap-12 lg:grid-cols-[1.25fr_1fr]">
             <div>
               <p className="hero-rise text-sm font-medium text-accent">
                 {dict.hero.greeting}{" "}

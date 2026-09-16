@@ -15,15 +15,15 @@ export type OrbitProduct = {
 
 /** Position, parallax depth and idle-float settings per card slot. */
 const SLOTS = [
-  { left: "1%", top: "2%", depth: 0.9, dur: "7s", delay: "0s", tilt: "-2deg" },
-  { left: "60%", top: "0%", depth: 0.65, dur: "8.5s", delay: "-2s", tilt: "2deg" },
-  { left: "31%", top: "45%", depth: 1, dur: "7.5s", delay: "-4s", tilt: "0deg" },
+  { left: "0%", top: "2%", depth: 0.9, dur: "7s", delay: "0s", tilt: "-2deg" },
+  { left: "52%", top: "0%", depth: 0.65, dur: "8.5s", delay: "-2s", tilt: "2deg" },
+  { left: "26%", top: "45%", depth: 1, dur: "7.5s", delay: "-4s", tilt: "0deg" },
   { left: "0%", top: "33%", depth: 0.7, dur: "9s", delay: "-1s", tilt: "1.5deg" },
-  { left: "63%", top: "31%", depth: 0.8, dur: "8s", delay: "-3s", tilt: "-1.5deg" },
-  { left: "2%", top: "66%", depth: 0.6, dur: "8.8s", delay: "-5s", tilt: "1deg" },
-  { left: "60%", top: "64%", depth: 0.85, dur: "7.8s", delay: "-2.5s", tilt: "-1deg" },
-  { left: "31%", top: "11%", depth: 0.75, dur: "9.2s", delay: "-6s", tilt: "1.5deg" },
-  { left: "30%", top: "82%", depth: 0.7, dur: "8.2s", delay: "-3.5s", tilt: "-2deg" },
+  { left: "53%", top: "31%", depth: 0.8, dur: "8s", delay: "-3s", tilt: "-1.5deg" },
+  { left: "1%", top: "66%", depth: 0.6, dur: "8.8s", delay: "-5s", tilt: "1deg" },
+  { left: "52%", top: "64%", depth: 0.85, dur: "7.8s", delay: "-2.5s", tilt: "-1deg" },
+  { left: "27%", top: "11%", depth: 0.75, dur: "9.2s", delay: "-6s", tilt: "1.5deg" },
+  { left: "26%", top: "82%", depth: 0.7, dur: "8.2s", delay: "-3.5s", tilt: "-2deg" },
 ];
 
 /**
@@ -104,7 +104,7 @@ export function HeroOrbit({ products }: { products: OrbitProduct[] }) {
     <>
       {/* Floating cloud (desktop) */}
       <div
-        className="relative hidden h-[460px] select-none md:block"
+        className="relative hidden h-[460px] select-none lg:block"
         onMouseMove={onMove}
         onMouseLeave={onLeave}
       >
@@ -162,11 +162,11 @@ export function HeroOrbit({ products }: { products: OrbitProduct[] }) {
                       className="h-7 w-7 rounded-lg border border-border object-contain"
                     />
                     <span className="text-left leading-tight">
-                      <span className="block text-xs font-semibold text-foreground">
+                      <span className="block whitespace-nowrap text-xs font-semibold text-foreground">
                         {p.name}
                       </span>
                       <span
-                        className="block text-[10px] font-medium"
+                        className="block whitespace-nowrap text-[10px] font-medium"
                         style={{ color: p.accent }}
                       >
                         {p.label}
@@ -187,8 +187,8 @@ export function HeroOrbit({ products }: { products: OrbitProduct[] }) {
         )}
       </div>
 
-      {/* Compact chip row (mobile) */}
-      <div className="md:hidden">
+      {/* Compact chip row (mobile + tablet) */}
+      <div className="lg:hidden">
         <div className="mt-2 flex flex-wrap gap-2">
           {products.map((p, i) => (
             <button
