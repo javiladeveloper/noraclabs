@@ -43,6 +43,26 @@ export async function generateMetadata({
   };
 }
 
+const ORGANIZACION = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Norac Labs",
+  legalName: "NORAC LABS E.I.R.L.",
+  url: "https://www.noraclabs.com",
+  logo: "https://www.noraclabs.com/logo-norac.png",
+  taxID: "20616346548",
+  email: "noraclabspe@gmail.com",
+  telephone: "+51 940 202 780",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "Cal. José Olaya 110, Urb. Bolognesi",
+    addressLocality: "Tacna",
+    addressCountry: "PE",
+  },
+  founder: { "@type": "Person", name: "Jonathan Joan Avila Huamolle" },
+  foundingDate: "2026-08-11",
+};
+
 export default async function RootLayout({
   children,
   params,
@@ -55,7 +75,16 @@ export default async function RootLayout({
       lang={lang}
       className={`${geistSans.variable} ${geistMono.variable} antialiased`}
     >
-      <body className="min-h-screen font-sans">{children}</body>
+      <body className="min-h-screen font-sans">
+        {/* Datos de la ORGANIZACIÓN para buscadores y verificadores (2026-10-05):
+            Apple exige que el sitio sea de la empresa para migrar la cuenta de
+            desarrollador de individual a organización. */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(ORGANIZACION) }}
+        />
+        {children}
+      </body>
     </html>
   );
 }

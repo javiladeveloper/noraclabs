@@ -1,7 +1,7 @@
 {
   "meta": {
-    "title": "Jonathan Avila — Software Engineer · Backend, Fullstack & AI",
-    "description": "Professional portfolio of Jonathan Avila. Software Engineer focused on backend, fullstack and generative AI. Creator of Ciudadano Alerta, Sania, HelPet and MaxFind."
+    "title": "Norac Labs E.I.R.L. — Software and AI automation for businesses",
+    "description": "Norac Labs E.I.R.L. (Tax ID / RUC 20616346548) is a Peruvian software company based in Tacna. We build our own products, such as Sania (clinic management) and LeadAI (AI-powered WhatsApp sales), and custom software for businesses."
   },
   "nav": {
     "about": "About",
@@ -19,7 +19,8 @@
     "pitch": "We digitize and automate your business.",
     "tagline": "We turn your manual processes into intelligent systems: apps, websites and AI automation. 14+ years building custom software.",
     "ctaProjects": "View projects",
-    "ctaContact": "Let's talk"
+    "ctaContact": "Let's talk",
+    "empresa": "NORAC LABS E.I.R.L. · Peruvian software company · Tacna, Peru"
   },
   "about": {
     "title": "About me",
@@ -128,6 +129,7 @@
     }
   },
   "footer": {
-    "rights": "All rights reserved."
+    "rights": "All rights reserved.",
+    "direccion": "Cal. José Olaya 110, Urb. Bolognesi, Tacna, Peru"
   }
 }

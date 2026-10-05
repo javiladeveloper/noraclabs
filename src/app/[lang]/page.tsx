@@ -113,6 +113,11 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
 
           <div className="grid w-full items-center gap-12 lg:grid-cols-[1.25fr_1fr]">
             <div>
+              {/* La empresa primero (2026-10-05): Apple verifica que el sitio sea de
+                  la organización (migración de la cuenta de desarrollador). */}
+              <p className="hero-rise mb-2 text-xs font-semibold uppercase tracking-[0.14em] text-muted">
+                {dict.hero.empresa}
+              </p>
               <p className="hero-rise text-sm font-medium text-accent">
                 {dict.hero.greeting}{" "}
                 <span className="text-foreground">{dict.hero.name}</span>
@@ -558,6 +563,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
               </p>
             </div>
             <p className="text-xs">NORAC LABS E.I.R.L. · RUC 20616346548</p>
+            <p className="text-xs">{dict.footer.direccion}</p>
           </div>
           <div className="flex gap-4">
             {profile.socials.github && (
